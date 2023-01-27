@@ -1,0 +1,15 @@
+themes {
+	octocolors-dark {
+		fg "#c9d1d9"
+		bg "#0d1117"
+		black "#0d1117"
+		red "#ff7b72"
+		green "#3fb950"
+		yellow "#d29922"
+		blue "#58a6ff"
+		magenta "#bc8cff"
+		cyan "#39c5cf"
+		white "#b1bac4"
+		orange "#f0883e"
+	}
+}

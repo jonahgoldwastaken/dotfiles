@@ -1,0 +1,40 @@
+[colors]
+ansi = [
+  '#24292f',
+  '#cf222e',
+  '#116329',
+  '#4d2d00',
+  '#0969da',
+  '#8250df',
+  '#1b7c83',
+  '#6e7781',
+]
+brights = [
+  '#57606a',
+  '#a40e26',
+  '#1a7f37',
+  '#633c01',
+  '#218bff',
+  '#a475f9',
+  '#3192aa',
+  '#8c959f',
+]
+foreground = '#24292f'
+background = '#ffffff'
+cursor_bg = '#0969da'
+cursor_border = '#24292f'
+cursor_fg = '#ffffff'
+selection_bg = '#b6e3ff'
+selection_fg = '#24292f'
+
+[colors.tab_bar]
+background = "#ffffff"
+active_tab = { bg_color = "#0969da", fg_color = "#ffffff", intensity = "Bold" }
+inactive_tab = { bg_color = "#f6f8fa", fg_color = "#bdbfc1", italic = true }
+inactive_tab_hover = { bg_color = "#ddf4ff", fg_color = "#bdbfc1", intensity = "Bold" }
+new_tab = { bg_color = "#f6f8fa", fg_color = "#bdbfc1" }
+new_tab_hover = { bg_color = "#0969da", fg_color = "#ffffff", intensity = "Bold" }
+
+[metadata]
+name = 'Octocolors Light'
+origin_url = 'https://github.com/jonahgoldwastaken/octocolors.nvim'

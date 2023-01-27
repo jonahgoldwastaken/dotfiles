@@ -1,0 +1,1 @@
+alias lt="exa -RT"
