@@ -118,4 +118,10 @@ return {
 			vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
 		end,
 	},
+
+	{
+		"antonk52/markdowny.nvim",
+		ft = "markdown",
+		config = true,
+	},
 }
