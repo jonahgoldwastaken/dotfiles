@@ -1,40 +1,30 @@
-set -gx LANG en_US.UTF-8
-set -gx LESS '--mouse --wheel-lines=3'
-set -gx EDITOR (which nvim)
-set -gx VISUAL $EDITOR
-set -gx SUDO_EDITOR $EDITOR
-set -gx PAGER "$(which less) -R"
+set -U fish_greeting
+set -Ux LANG en_US.UTF-8
+set -Ux LC_ALL $LANG
+set -Ux LG_CONFIG_FILE "$HOME/.config/lazygit/config.yml"
+set -Ux LESS '--mouse --wheel-lines=3'
+set -Ux EDITOR nvim
+set -Ux VISUAL $EDITOR
+set -Ux SUDO_EDITOR $EDITOR
+set -Ux PAGER "less -R"
+set -Ux BAT_THEME Nord
+set -Ux GOPATH ~/go
+set -Ux N_PRESERVE_COREPACK 1
+set -Ux N_PREFIX ~/.n
+set -Ux ZELLIJ_AUTO_ATTACH true
+set -Ux HOMEBREW_NO_INSTALL_FROM_API 1
+set -Ux HOMEBREW_NO_AUTO_UPDATE 1
+set -Ux HOMEBREW_NO_ANALYTICS 1
+set -Ux fish_user_paths
 
-fish_add_path /usr/local/opt/curl/bin
-fish_add_path -p ~/.cargo/bin
-
-set -gx GOPATH ~/go
-fish_add_path $GOPATH $GOPATH/bin
-
-set -gx N_PREFIX ~/.n
-fish_add_path $N_PREFIX/bin $N_PREFIX/lib/node_modules
-
-# pnpm
-set -gx PNPM_HOME /Users/jonahmeijers/Library/pnpm
-fish_add_path $PNPM_HOME
-# pnpm end
-
-# zellij
-set -gx ZELLIJ_AUTO_ATTACH true
-# zellij end
+eval (/usr/local/bin/brew shellenv)
+fish_add_path $HOME/.cargo/bin
+fish_add_path $GOPATH/bin
+fish_add_path $N_PREFIX/bin
+fish_add_path $N_PREFIX/lib/node_modules
 
 if status is-interactive
-    if test -d (brew --prefix)"/share/fish/completions"
-        set -gx fish_complete_path $fish_complete_path (brew --prefix)/share/fish/completions
-    end
-
-    if test -d (brew --prefix)"/share/fish/vendor_completions.d"
-        set -gx fish_complete_path $fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
-    end
-
-    # Commands to run in interactive sessions can go here
-    update_theme $os_theme
-
     eval (zellij setup --generate-auto-start fish | string collect)
-    eval (wezterm shell-completion --shell fish | string collect)
+    zoxide init fish | source
+    update_theme $os_theme
 end

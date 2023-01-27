@@ -2,17 +2,10 @@ function update_theme --on-event os_theme_change --argument-names theme
     set -Ux os_theme $theme
     if test $theme = dark
         set_theme_dark
-        if type -q kitty
-            kitty +kitten themes --reload-in=all Octocolors Dark
-        end
     else
         set_theme_light
-        if type -q kitty
-            kitty +kitten themes --reload-in=all Octocolors Light
-        end
     end
 end
-
 
 function set_theme_dark
     # Color palette
