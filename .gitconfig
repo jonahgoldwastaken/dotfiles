@@ -1,0 +1,52 @@
+[core]
+	pager = delta
+	ignoreCase = false
+
+[color]
+	ui = true
+
+[user]
+	name = Jonah Meijers (GitHub)
+	email = jonahmeijers97@gmail.com
+
+[commit]
+	gpgsign = true
+
+[init]
+	defaultBranch = main
+
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+
+[pull]
+	rebase = true
+
+[rebase]
+	autoStash = true
+
+[gpg]
+	program = /usr/local/bin/gpg
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+	light = false
+	side-by-side = false
+	line-numbers = true
+
+[merge]
+	conflictstyle = diff3
+
+[diff]
+	colorMoved = default 
+
+[github]
+	user = jonahgoldwastaken
+
+[include]
+	path = ~/programmeren/octocolors.nvim/extras/delta/octocolors_dark.gitconfig
