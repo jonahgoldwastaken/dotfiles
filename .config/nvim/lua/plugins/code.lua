@@ -133,13 +133,11 @@ return {
 		"zbirenbaum/copilot.lua",
 		event = "BufReadPost",
 		config = function()
-			vim.defer_fn(function()
-				require("copilot").setup {
-					panel = { enabled = false },
-					suggestion = { enabled = false },
-				}
-				require("copilot_cmp").setup()
-			end, 100)
+			require("copilot").setup {
+				panel = { enabled = false },
+				suggestion = { enabled = false },
+			}
+			require("copilot_cmp").setup()
 		end,
 	},
 
