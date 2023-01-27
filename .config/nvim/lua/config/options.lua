@@ -4,7 +4,7 @@ vim.g.maplocalleader = " "
 
 vim.opt.hidden = true
 vim.opt.showmode = false
-vim.opt.clipboard = "unnamed"
+vim.opt.clipboard = "unnamed,unnamedplus"
 vim.opt.confirm = true
 vim.opt.autoread = true
 vim.opt.number = true
