@@ -8,6 +8,7 @@ set -Ux VISUAL $EDITOR
 set -Ux SUDO_EDITOR $EDITOR
 set -Ux PAGER "less -R"
 set -Ux BAT_THEME Nord
+set -gx PNPM_HOME /Users/jonahmeijers/Library/pnpm
 set -Ux GOPATH ~/go
 set -Ux N_PRESERVE_COREPACK 1
 set -Ux N_PREFIX ~/.n
@@ -22,6 +23,7 @@ fish_add_path $HOME/.cargo/bin
 fish_add_path $GOPATH/bin
 fish_add_path $N_PREFIX/bin
 fish_add_path $N_PREFIX/lib/node_modules
+fish_add_path $PNPM_HOME
 
 if status is-interactive
     eval (zellij setup --generate-auto-start fish | string collect)
