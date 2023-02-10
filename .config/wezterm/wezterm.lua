@@ -8,7 +8,9 @@ local config = {
 		brightness = 0.75,
 	},
 	prefer_egl = true,
-	alternate_buffer_wheel_scroll_speed = 1,
+	alternate_buffer_wheel_scroll_speed = 0,
+	front_end = "WebGpu",
+	webgpu_power_preference = "LowPower",
 }
 
 return require("lib.table").table_merge(
