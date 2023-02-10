@@ -5,6 +5,7 @@ return {
 	send_composed_key_when_right_alt_is_pressed = false,
 	send_composed_key_when_left_alt_is_pressed = true,
 	disable_default_key_bindings = true,
+	disable_default_mouse_bindings = true,
 	keys = {
 		{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
 		{ key = "Tab", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },

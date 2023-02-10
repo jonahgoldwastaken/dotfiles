@@ -24,7 +24,6 @@ vim.opt.inccommand = "nosplit"
 vim.opt.formatoptions = "jcroqlnt"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.grepprg = "rg --vimgrep"
-vim.opt.mouse = "a"
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 vim.opt.termguicolors = true
 vim.opt.completeopt = "menu,menuone,noselect"
