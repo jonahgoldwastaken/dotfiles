@@ -1,6 +1,5 @@
-function update_theme --on-event os_theme_change --argument-names theme
-    set -Ux os_theme $theme
-    if test $theme = dark
+function update_theme --on-variable os_theme
+    if test $os_theme = dark
         set_theme_dark
     else
         set_theme_light
