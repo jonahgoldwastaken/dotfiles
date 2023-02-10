@@ -33,17 +33,13 @@ return {
 			local servers = require "plugins.lsp.servers"
 			local capabilities =
 				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-			require("mason-lspconfig").setup {
-				ensure_installed = vim.tbl_keys(servers),
-				automatic_setup = true,
-			}
-			require("mason-lspconfig").setup_handlers {
-				function(server)
-					local opts = servers[server] or {}
-					opts.capabilities = capabilities
-					require("lspconfig")[server].setup(opts)
-				end,
-			}
+
+			require("mason-lspconfig").setup {}
+
+			for server, opts in pairs(servers) do
+				opts.capabilities = capabilities
+				require("lspconfig")[server].setup(opts)
+			end
 		end,
 	},
 
@@ -64,12 +60,6 @@ return {
 			require("mason-null-ls").setup_handlers {
 				function(source_name, methods)
 					require "mason-null-ls.automatic_setup"(source_name, methods)
-				end,
-
-				selene = function()
-					nls.register(nls.builtins.diagnostics.selene.with {
-						condition = function(utils) return utils.root_has_file { "selene.toml" } end,
-					})
 				end,
 
 				prettier = function()

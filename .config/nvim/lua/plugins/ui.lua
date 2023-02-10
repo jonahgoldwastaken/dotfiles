@@ -74,21 +74,14 @@ return {
 				hover = {
 					enabled = false,
 				},
-				offsets = {
-					{
-						filetype = "neo-tree",
-						text = "Neo-tree",
-						highlight = "Directory",
-						text_align = "center",
-					},
-				},
+				show_close_icon = false,
+				show_buffer_close_icons = false,
 			},
 		},
 	},
 
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "copilot-status.nvim" },
 		event = "VeryLazy",
 		config = function()
 			require("lualine").setup {
@@ -140,7 +133,7 @@ return {
 							icon = { icons.ui.Tag },
 							cond = function() return package.loaded["grapple"] and require("grapple").exists() end,
 						},
-						{ require("copilot_status").status_string },
+						{ function() return require("copilot_status").status_string() end },
 						{
 							"diagnostics",
 							source = { "nvim_diagnostic" },
@@ -219,7 +212,7 @@ return {
 	-- active indent guide and indent text objects
 	{
 		"echasnovski/mini.indentscope",
-		version = false, -- wait till new 0.7.0 release to put it back on semver
+		version = false,
 		event = "BufReadPre",
 		config = function()
 			vim.api.nvim_create_autocmd("FileType", {
@@ -304,79 +297,7 @@ return {
 					input = {},
 				},
 			},
-			views = {
-				-- popupmenu = {
-				-- 	backend = "nui",
-				-- 	relative = "editor",
-				-- 	position = "auto",
-				-- 	size = {
-				-- 		width = "auto",
-				-- 		height = "auto",
-				-- 		max_height = 15,
-				-- 	},
-				-- 	kind_icons = icons.kind,
-				-- 	border = {
-				-- 		style = "rounded",
-				-- 		padding = { 0, 1 },
-				-- 	},
-				-- 	win_options = {
-				-- 		cursorline = true,
-				-- 		cursorlineopt = "line",
-				-- 		winhighlight = {
-				-- 			Normal = "NoicePopupmenu", -- change to NormalFloat to make it look like other floats
-				-- 			FloatBorder = "NoicePopupmenuBorder", -- border highlight
-				-- 			CursorLine = "NoicePopupmenuSelected", -- used for highlighting the selected item
-				-- 			PmenuMatch = "NoicePopupmenuMatch", -- used to highlight the part of the item that matches the input
-				-- 		},
-				-- 	},
-				-- },
-				-- cmdline_popup = {
-				-- 	backend = "popup",
-				-- 	relative = "editor",
-				-- 	focusable = false,
-				-- 	enter = false,
-				-- 	zindex = 60,
-				-- 	position = {
-				-- 		row = 2,
-				-- 		col = "50%",
-				-- 	},
-				-- 	size = {
-				-- 		min_width = 60,
-				-- 		width = "auto",
-				-- 		height = "auto",
-				-- 	},
-				-- 	border = {
-				-- 		style = "rounded",
-				-- 		padding = { 0, 1 },
-				-- 	},
-				-- 	win_options = {
-				-- 		winhighlight = {
-				-- 			Normal = "NoiceCmdlinePopup",
-				-- 			FloatBorder = "NoiceCmdlinePopupBorder",
-				-- 			IncSearch = "",
-				-- 			Search = "",
-				-- 		},
-				-- 		cursorline = false,
-				-- 	},
-				-- },
-				-- popup = {
-				-- 	backend = "popup",
-				-- 	relative = "editor",
-				-- 	border = "rounded",
-				-- 	close = {
-				-- 		events = { "BufLeave" },
-				-- 		keys = { "q" },
-				-- 	},
-				-- 	position = "50%",
-				-- 	size = {
-				-- 		width = "120",
-				-- 		height = "20",
-				-- 	},
-				-- 	win_options = {
-				-- 		winhighlight = { Normal = "NoicePopup", FloatBorder = "NoicePopupBorder" },
-				-- 	},
-				-- },
-			},
+			views = {},
 			routes = {
 				{
 					filter = {
@@ -414,16 +335,6 @@ return {
 		dependencies = { "nvim-web-devicons" },
 		config = function()
 			local dashboard = require "alpha.themes.dashboard"
-			local logo = [[
-             ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z
-             ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z    
-             ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z       
-             ██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z         
-             ███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║
-             ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝
-      ]]
-
-			dashboard.section.header.val = vim.split(logo, "\n")
 			dashboard.section.buttons.val = {
 				dashboard.button("f", icons.ui.Search .. " Find file", ":Telescope find_files <CR>"),
 				dashboard.button(
@@ -512,25 +423,6 @@ return {
 			)
 		end,
 		event = "VeryLazy",
-	},
-
-	-- lsp symbol navigation for lualine
-	{
-		"SmiteshP/nvim-navic",
-		init = function()
-			vim.g.navic_silence = true
-			require("util").on_attach(function(client, buffer)
-				if client.server_capabilities.documentSymbolProvider then
-					require("nvim-navic").attach(client, buffer)
-				end
-			end)
-		end,
-		opts = {
-			separator = " " .. icons.chevron.Right .. " ",
-			highlight = false,
-			depth_limit = 5,
-			icons = vim.deepcopy(icons.kind),
-		},
 	},
 
 	-- ui components

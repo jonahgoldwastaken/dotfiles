@@ -101,11 +101,6 @@ return {
 	},
 
 	{
-		"imsnif/kdl.vim",
-		ft = "kdl",
-	},
-
-	{
 		"ojroques/nvim-osc52",
 		event = "BufReadPost",
 		config = function()

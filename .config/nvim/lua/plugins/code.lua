@@ -99,14 +99,9 @@ return {
 						require("copilot_cmp.comparators").score,
 						compare.offset,
 						compare.exact,
-						-- compare.scopes,
 						compare.score,
 						compare.recently_used,
 						compare.locality,
-						-- compare.kind,
-						-- compare.sort_text,
-						-- compare.length,
-						-- compare.order,
 					},
 				},
 				completion = {
@@ -146,6 +141,7 @@ return {
 		dependencies = { "copilot.lua" },
 		config = true,
 		event = "BufReadPost",
+		module = true,
 		opts = {
 			icons = {
 				idle = " ",
@@ -171,6 +167,7 @@ return {
 		keys = { "s" },
 		config = function() require("mini.surround").setup {} end,
 	},
+
 	{
 		"smjonas/inc-rename.nvim",
 		cmd = "IncRename",

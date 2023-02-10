@@ -2,18 +2,6 @@ local util = require "util"
 local icons = require "config.icons"
 
 return {
-
-	{
-		"windwp/nvim-spectre",
-    -- stylua: ignore
-    keys = {
-      { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
-    },
-		opts = {
-			colors_devicons = false,
-		},
-	},
-
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
@@ -365,7 +353,7 @@ return {
 				options = {
 					enabled = true,
 					ruler = true,
-					showcmd = false,
+					showcmd = true,
 				},
 				twilight = { enabled = false },
 				gitsigns = { enabled = true },
@@ -374,30 +362,15 @@ return {
 					font = "18",
 				},
 			},
-			on_open = function() require("lualine").hide {} end,
-			on_close = function() require("lualine").hide { unhide = true } end,
+			on_open = function()
+				vim.opt.cmdheight = 1
+				require("lualine").hide {}
+			end,
+			on_close = function()
+				vim.opt.cmdheight = 0
+				require("lualine").hide { unhide = true }
+			end,
 		},
 		keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
 	},
-
-	-- {
-	-- 	"shortcuts/no-neck-pain.nvim",
-	-- 	cmd = "NoNeckPain",
-	-- 	keys = { { "<leader>z", "<cmd>NoNeckPain<cr>", desc = "No Neck Pain" } },
-	-- 	opts = {
-	-- 		toggleMapping = false,
-	-- 		buffers = {
-	-- 			wo = {
-	-- 				cursorline = false,
-	-- 				cursorcolumn = false,
-	-- 				number = false,
-	-- 				relativenumber = false,
-	-- 				foldenable = false,
-	-- 				list = false,
-	-- 				wrap = true,
-	-- 				linebreak = true,
-	-- 			},
-	-- 		},
-	-- 	},
-	-- },
 }
