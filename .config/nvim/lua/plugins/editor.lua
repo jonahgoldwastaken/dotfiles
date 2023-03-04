@@ -365,6 +365,8 @@ return {
 					enabled = true,
 					ruler = true,
 					showcmd = true,
+					laststatus = 0,
+					list = false,
 				},
 				twilight = { enabled = false },
 				gitsigns = { enabled = true },
@@ -374,12 +376,12 @@ return {
 				},
 			},
 			on_open = function()
-				vim.opt.cmdheight = 1
-				require("lualine").hide {}
+				vim.opt.fillchars:remove "eob:~"
+				vim.o.cmdheight = 1
 			end,
 			on_close = function()
-				vim.opt.cmdheight = 0
-				require("lualine").hide { unhide = true }
+				vim.opt.fillchars:append "eob:~"
+				vim.o.cmdheight = 0
 			end,
 		},
 		keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
