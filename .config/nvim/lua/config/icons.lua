@@ -1,5 +1,3 @@
-vim.g.use_nerd_icons = false
-
 return {
 	kind = {
 		Text = " ",
