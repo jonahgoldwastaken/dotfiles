@@ -2,7 +2,7 @@
 keybinds clear-defaults=true {
 	normal {
 		// uncomment this and adjust key if using copy_on_select=false
-		// bind "Alt c" { Copy; }
+		bind "Alt c" { Copy; }
 	}
 	locked {
 		bind "Ctrl g" { SwitchToMode "Normal"; }
@@ -68,7 +68,7 @@ keybinds clear-defaults=true {
 		bind "Ctrl s" { SwitchToMode "Normal"; }
 		bind "e" { EditScrollback; SwitchToMode "Normal"; }
 		bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
-		bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
+		/* bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; } */
 		bind "j" "Down" { ScrollDown; }
 		bind "k" "Up" { ScrollUp; }
 		bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
@@ -76,7 +76,7 @@ keybinds clear-defaults=true {
 		bind "d" { HalfPageScrollDown; }
 		bind "u" { HalfPageScrollUp; }
 		// uncomment this and adjust key if using copy_on_select=false
-		// bind "Alt c" { Copy; }
+		bind "Ctrl c" { Copy; }
 	}
 	search {
 		bind "Ctrl s" { SwitchToMode "Normal"; }
@@ -128,7 +128,6 @@ keybinds clear-defaults=true {
 	}
 	shared_except "locked" {
 		bind "Ctrl g" { SwitchToMode "Locked"; }
-		bind "Ctrl q" { Quit; }
 		bind "Alt n" { NewPane; }
 		bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
 		bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
@@ -271,7 +270,7 @@ mouse_mode false
 // Enable or disable automatic copy (and clear) of selection when releasing mouse
 // Default: true
 // 
-// copy_on_select false
+copy_on_select true
 
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
