@@ -11,8 +11,10 @@ keymap("v", "<A-k>", ":m .-2<CR>==")
 keymap("v", "p", "\"_dP")
 
 --Remap for dealing with word wrap
-keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
-keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+keymap("v", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+keymap("v", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Move Lines
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
