@@ -22,7 +22,7 @@ set -e PATH[2]
 set -e PATH[1]
 # set -q PATH; and set PATH /opt/homebrew/opt/coreutils/libexec/gnubin $PATH
 
-fish_add_path $HOME/.cargo/bin
+fish_add_path -p $HOME/.cargo/bin
 fish_add_path $GOPATH/bin
 fish_add_path $N_PREFIX/bin
 fish_add_path $N_PREFIX/lib/node_modules
