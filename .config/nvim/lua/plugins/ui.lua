@@ -53,34 +53,6 @@ return {
 	},
 
 	{
-		"akinsho/bufferline.nvim",
-		event = "VeryLazy",
-		init = function()
-			vim.keymap.set("n", "<s-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev Buffer" })
-			vim.keymap.set("n", "<s-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next Buffer" })
-			vim.keymap.set("n", "<leader>b[", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous" })
-			vim.keymap.set("n", "<leader>b]", "<cmd>BufferLineCycleNext<cr>", { desc = "Next" })
-		end,
-		opts = {
-			options = {
-				diagnostics = "nvim_lsp",
-				always_show_bufferline = false,
-				diagnostics_indicator = function(_, _, diag)
-					local ic = icons.diagnostics
-					local ret = (diag.error and ic.Error .. diag.error .. " " or "")
-						.. (diag.warning and ic.Warn .. diag.warning or "")
-					return vim.trim(ret)
-				end,
-				hover = {
-					enabled = false,
-				},
-				show_close_icon = false,
-				show_buffer_close_icons = false,
-			},
-		},
-	},
-
-	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		config = function()
