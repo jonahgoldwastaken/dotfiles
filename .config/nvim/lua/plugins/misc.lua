@@ -102,7 +102,7 @@ return {
 
 	{
 		"ojroques/nvim-osc52",
-		event = "BufReadPost",
+		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			local function copy()
 				if vim.v.event.operator == "y" and vim.v.event.regname == "+" then

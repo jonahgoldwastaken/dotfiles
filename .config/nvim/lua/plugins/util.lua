@@ -2,7 +2,7 @@ return {
 	{ "folke/lazy.nvim", version = false },
 	{
 		"folke/persistence.nvim",
-		event = "BufReadPre",
+		event = { "BufReadPre", "BufNewFile" },
 		opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help" } },
     -- stylua: ignore
     keys = {

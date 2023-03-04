@@ -228,7 +228,7 @@ return {
 
 	{
 		"lewis6991/gitsigns.nvim",
-		event = "BufReadPost",
+		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("gitsigns").setup {
 				signs = {
@@ -311,7 +311,7 @@ return {
 
 	{
 		"RRethy/vim-illuminate",
-		event = "BufReadPost",
+		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("illuminate").configure {
 				delay = 200,
@@ -335,7 +335,7 @@ return {
     },
 	},
 
-	{ "nacro90/numb.nvim", event = "BufReadPost", config = true },
+	{ "nacro90/numb.nvim", event = { "BufReadPost", "BufNewFile" }, config = true },
 
 	{
 		"folke/zen-mode.nvim",

@@ -3,7 +3,7 @@ local icons = require "config.icons"
 return {
 	{
 		"neovim/nvim-lspconfig",
-		event = "BufReadPre",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
 			{ "folke/neodev.nvim", config = true },
@@ -45,7 +45,7 @@ return {
 
 	{
 		"jose-elias-alvarez/null-ls.nvim",
-		event = "BufReadPre",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"mason.nvim",
 			"jay-babu/mason-null-ls.nvim",

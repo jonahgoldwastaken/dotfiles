@@ -126,7 +126,7 @@ return {
 
 	{
 		"zbirenbaum/copilot.lua",
-		event = "BufReadPost",
+		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("copilot").setup {
 				panel = { enabled = false },
@@ -140,7 +140,7 @@ return {
 		"jonahgoldwastaken/copilot-status.nvim",
 		dependencies = { "copilot.lua" },
 		config = true,
-		event = "BufReadPost",
+		event = { "BufReadPost", "BufNewFile" },
 		module = true,
 		opts = {
 			icons = {
@@ -224,7 +224,7 @@ return {
 	-- color codes
 	{
 		"norcalli/nvim-colorizer.lua",
-		event = "BufReadPost",
+		event = { "BufReadPost", "BufNewFile" },
 		config = function() require("colorizer").setup() end,
 	},
 
@@ -267,7 +267,7 @@ return {
 
 	{
 		"folke/todo-comments.nvim",
-		event = "BufReadPost",
+		event = { "BufReadPost", "BufNewFile" },
 		config = true,
 		opts = {
 			keywords = {

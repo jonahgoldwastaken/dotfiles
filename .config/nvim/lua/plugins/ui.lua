@@ -198,7 +198,7 @@ return {
 
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		event = "BufReadPre",
+		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("indent_blankline").setup {
 				filetype_exclude = { "help", "NvimTree", "glowpreview", "neo-tree", "Trouble", "lazy" },
@@ -213,7 +213,7 @@ return {
 	{
 		"echasnovski/mini.indentscope",
 		version = false,
-		event = "BufReadPre",
+		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = { "help", "NvimTree", "neo-tree", "Trouble", "lazy", "mason" },
