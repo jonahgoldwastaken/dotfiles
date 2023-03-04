@@ -1,3 +1,18 @@
+require "config.options"
+
+if vim.fn.argc(-1) == 0 then
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "VeryLazy",
+		callback = function()
+			require "config.autocmds"
+			require "config.keymaps"
+		end,
+	})
+else
+	require "config.autocmds"
+	require "config.keymaps"
+end
+
 require "config.lazy"
 
 vim.api.nvim_create_user_command(
