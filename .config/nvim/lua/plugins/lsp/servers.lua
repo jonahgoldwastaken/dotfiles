@@ -3,7 +3,7 @@ return {
 		settings = {
 			["rust-analyzer"] = {
 				cargo = { allFeatures = true },
-				check = { command = "clippy" },
+				check = { command = "clippy", extraArgs = { "--no-deps" } },
 				procMacro = { enable = true },
 			},
 		},
@@ -34,7 +34,7 @@ return {
 			"tailwind.config.cjs"
 		),
 	},
-	sumneko_lua = {
+	lua_ls = {
 		single_file_support = true,
 		settings = {
 			Lua = {
