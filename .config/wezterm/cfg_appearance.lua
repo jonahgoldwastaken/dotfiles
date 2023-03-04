@@ -3,6 +3,7 @@ local wezterm = require("wezterm")
 local cfg = {
 	-- Tab bar config
 	hide_tab_bar_if_only_one_tab = true,
+	enable_tab_bar = false,
 	use_fancy_tab_bar = false,
 	tab_bar_at_bottom = true,
 	tab_max_width = 24,
