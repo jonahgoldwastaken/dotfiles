@@ -7,6 +7,6 @@
 	"trailingComma": "es5",
 	"useTabs": true,
 	"printWidth": 80,
-	"proseWrap": "always",
+	"proseWrap": "preserve",
 	"editorconfig": true
 }
