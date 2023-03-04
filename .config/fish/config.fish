@@ -31,5 +31,5 @@ fish_add_path $PNPM_HOME
 if status is-interactive
     eval (zellij setup --generate-auto-start fish | string collect)
     zoxide init fish | source
-    update_theme $os_theme
+    update_theme
 end
