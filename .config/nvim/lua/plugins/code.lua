@@ -75,6 +75,7 @@ return {
 					end, { "i", "s" }),
 				},
 				formatting = {
+					fields = { "abbr", "kind" },
 					format = function(entry, vim_item)
 						if kind_icons[vim_item.kind] then
 							vim_item.kind = kind_icons[vim_item.kind] .. vim_item.kind
