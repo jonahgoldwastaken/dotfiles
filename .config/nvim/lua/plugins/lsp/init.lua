@@ -72,8 +72,6 @@ return {
 					})
 				end,
 
-				markdownlint = function() nls.register(nls.builtins.diagnostics.markdownlint) end,
-
 				eslint_d = function()
 					local opts = {
 						extra_filetypes = { "astro", "svelte" },
