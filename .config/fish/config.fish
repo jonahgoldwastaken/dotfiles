@@ -18,6 +18,9 @@ set -Ux HOMEBREW_NO_INSTALL_FROM_API 1
 set -Ux HOMEBREW_NO_ANALYTICS 1
 
 eval (/usr/local/bin/brew shellenv | string collect)
+set -e PATH[2]
+set -e PATH[1]
+# set -q PATH; and set PATH /opt/homebrew/opt/coreutils/libexec/gnubin $PATH
 
 fish_add_path $HOME/.cargo/bin
 fish_add_path $GOPATH/bin
