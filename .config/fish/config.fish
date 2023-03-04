@@ -7,6 +7,7 @@ set -Ux SUDO_EDITOR $EDITOR
 set -Ux PAGER "less -R"
 set -Ux LESS '--wheel-lines=3'
 set -Ux BAT_THEME Nord
+set -Ux FZF_DEFAULT_OPTS --bind=ctrl-l:clear-query
 set -Ux LG_CONFIG_FILE "$HOME/.config/lazygit/config.yml"
 set -Ux PNPM_HOME /Users/jonahmeijers/Library/pnpm
 set -Ux GOPATH ~/programmeren/go
