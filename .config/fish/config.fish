@@ -15,8 +15,8 @@ set -Ux N_PRESERVE_COREPACK 1
 set -Ux N_PREFIX ~/.n
 set -Ux ZELLIJ_AUTO_ATTACH true
 set -Ux HOMEBREW_NO_INSTALL_FROM_API 1
-set -Ux HOMEBREW_NO_AUTO_UPDATE 1
 set -Ux HOMEBREW_NO_ANALYTICS 1
+
 eval (/usr/local/bin/brew shellenv | string collect)
 
 fish_add_path $HOME/.cargo/bin
