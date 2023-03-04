@@ -338,6 +338,12 @@ return {
 	{ "nacro90/numb.nvim", event = { "BufReadPost", "BufNewFile" }, config = true },
 
 	{
+		"echasnovski/mini.bracketed",
+		event = { "BufReadPost", "BufNewFile" },
+		version = false,
+	},
+
+	{
 		"folke/zen-mode.nvim",
 		cmd = "ZenMode",
 		opts = {
