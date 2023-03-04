@@ -261,7 +261,7 @@ return {
 	{
 		"Wansmer/treesj",
 		keys = {
-			{ "J", "<cmd>TSJToggle<cr>" },
+			{ "<leader>j", "<cmd>TSJToggle<cr>" },
 		},
 		opts = { use_default_keymaps = false, max_join_length = 150 },
 	},
