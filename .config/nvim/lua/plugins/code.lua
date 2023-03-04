@@ -46,7 +46,7 @@ return {
 				},
 				mapping = cmp.mapping.preset.insert {
 					["<esc>"] = cmp.mapping(function(fallback)
-						if not cmp.visble() then return fallback() end
+						if not cmp.visible() then return fallback() end
 						cmp.abort()
 					end, { "s" }),
 					["<C-Space>"] = cmp.mapping.complete { config = { completion = { keyword_length = 0 } } },
