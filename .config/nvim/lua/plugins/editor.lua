@@ -186,7 +186,12 @@ return {
 		},
 		opts = {
 			create_hl_autocmd = false,
+			keys = "asdghklqwertyuiopzxcvbnmfj",
 		},
+		config = function(_, opts)
+			opts.perm_method = require("hop.perm").TrieBacktrackFilling
+			require("hop").setup(opts)
+		end,
 	},
 
 	{
