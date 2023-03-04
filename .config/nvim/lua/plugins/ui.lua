@@ -274,7 +274,7 @@ return {
 				{
 					filter = {
 						any = {
-							{ event = "msg_show", kind = "", find = "written" },
+							{ event = "msg_show", kind = "", find = "[w]" },
 							{ event = "notify", kind = "info", find = "Toggling" },
 						},
 					},
