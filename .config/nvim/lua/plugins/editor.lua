@@ -44,18 +44,38 @@ return {
 				util.telescope("lsp_document_symbols", {
 					symbols = {
 						"Class",
-						"Function",
-						"Method",
 						"Constructor",
+						"Enum",
+						"Field",
+						"Function",
 						"Interface",
+						"Method",
 						"Module",
+						"Property",
 						"Struct",
 						"Trait",
-						"Field",
-						"Property",
 					},
 				}),
 				desc = "Goto Symbol",
+			},
+			{
+				"<leader>sw",
+				util.telescope("lsp_workspace_symbols", {
+					symbols = {
+						"Class",
+						"Constructor",
+						"Enum",
+						"Field",
+						"Function",
+						"Interface",
+						"Method",
+						"Module",
+						"Property",
+						"Struct",
+						"Trait",
+					},
+				}),
+				desc = "Goto Symbol (workspace)",
 			},
 			{ "<leader>su", "<cmd>Telescope undo<cr>", desc = "Undo tree" },
 			{ "<leader>ha", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
@@ -77,7 +97,7 @@ return {
 						prompt_position = "top",
 						center = {
 							anchor = "N",
-							width = 60,
+							width = 80,
 						},
 					},
 					sorting_strategy = "ascending",
@@ -108,6 +128,7 @@ return {
 				},
 				pickers = {
 					current_buffer_fuzzy_find = {
+						wrap_results = false,
 						theme = "dropdown",
 					},
 					find_files = {
@@ -121,6 +142,10 @@ return {
 					buffers = {
 						previewer = false,
 						layout_strategy = "center",
+					},
+					lsp_document_symbols = {
+						wrap_results = false,
+						theme = "dropdown",
 					},
 				},
 				extensions = {
