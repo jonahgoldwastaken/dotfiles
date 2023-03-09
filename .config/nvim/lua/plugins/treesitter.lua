@@ -8,6 +8,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		version = false,
+		dependencies = { { "HiPhish/nvim-ts-rainbow2" } },
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
 		config = function()
@@ -37,6 +38,9 @@ return {
 				highlight = { enable = true },
 				indent = { enable = true },
 				context_commentstring = { enable = true, enable_autocmd = false },
+				rainbow = {
+					enable = true,
+				},
 				incremental_selection = {
 					enable = true,
 					keymaps = {
