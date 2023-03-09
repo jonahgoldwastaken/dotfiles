@@ -87,23 +87,39 @@ return {
 					end,
 				},
 				sources = cmp.config.sources {
-					{ name = "copilot", priority = 10, max_item_count = 3 },
-					{ name = "nvim_lsp", priority = 5 },
+					{ name = "copilot", max_item_count = 3 },
+					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "buffer" },
 					{ name = "path" },
 					{ name = "emoji" },
 				},
 				sorting = {
+					priority_weight = 2,
 					comparators = {
 						require("copilot_cmp.comparators").prioritize,
-						require("copilot_cmp.comparators").score,
-						compare.offset,
-						compare.exact,
-						compare.score,
-						compare.recently_used,
-						compare.locality,
+						function(a1, a2)
+							local types = require "cmp.types"
+							local k1 = a1:get_kind()
+							k1 = k1 == types.lsp.CompletionItemKind.Text and 100 or k1
+							local k2 = a2:get_kind()
+							k2 = k2 == types.lsp.CompletionItemKind.Text and 100 or k2
+							if k1 ~= k2 then
+								local diff = k1 - k2
+								return diff < 0
+							end
+						end,
 					},
+					compare.offset,
+					-- compare.scopes,
+					compare.exact,
+					compare.score,
+					compare.recently_used,
+					compare.locality,
+					-- compare.kind,
+					compare.sort_text,
+					compare.length,
+					compare.order,
 				},
 				completion = {
 					completeopt = "menu,menuone,noinsert,noselect",
