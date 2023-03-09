@@ -371,6 +371,7 @@ return {
 		"echasnovski/mini.bracketed",
 		event = { "BufReadPost", "BufNewFile" },
 		version = false,
+		config = function() require("mini.bracketed").setup() end,
 	},
 
 	{
