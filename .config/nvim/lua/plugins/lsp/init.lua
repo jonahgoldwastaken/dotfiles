@@ -7,6 +7,7 @@ return {
 		dependencies = {
 			{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
 			{ "folke/neodev.nvim", config = true },
+			{ "lvimuser/lsp-inlayhints.nvim", config = true },
 			"mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"hrsh7th/cmp-nvim-lsp",
@@ -14,6 +15,7 @@ return {
 		},
 		config = function()
 			require("util").on_attach(function(client, buffer)
+				require("lsp-inlayhints").on_attach(client, buffer)
 				require("plugins.lsp.format").on_attach(client, buffer)
 				require("plugins.lsp.keymaps").on_attach(client, buffer)
 			end)
