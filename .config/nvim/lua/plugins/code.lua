@@ -275,11 +275,10 @@ return {
 	},
 
 	{
-		"Wansmer/treesj",
-		keys = {
-			{ "<leader>j", "<cmd>TSJToggle<cr>" },
-		},
-		opts = { use_default_keymaps = false, max_join_length = 150 },
+		"echasnovski/mini.splitjoin",
+		version = false,
+		event = { "BufReadPost", "BufNewFile" },
+		config = function() require("mini.splitjoin").setup() end,
 	},
 
 	{
