@@ -10,8 +10,15 @@ local config = {
 	prefer_egl = true,
 	alternate_buffer_wheel_scroll_speed = 0,
 	front_end = "WebGpu",
-	webgpu_power_preference = "LowPower",
 }
+
+for _, b in ipairs(wezterm.battery_info()) do
+	if b.state == "Charging" or b.state == "Full" then
+		config.webgpu_power_preference = "HighPerformance"
+	else
+		config.webgpu_power_preference = "LowPower"
+	end
+end
 
 return require("lib.table").table_merge(
 	config,
