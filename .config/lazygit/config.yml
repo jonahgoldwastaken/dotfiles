@@ -1,0 +1,16 @@
+gui:
+  theme:
+    lightTheme: false
+  skipNoStagedFilesWarning: false
+  showListFooter: true
+  showFileTree: true
+  showCommandLog: true
+  showBottomLine: true
+  showIcons: true
+  commandLogSize: 8
+  splitDiff: auto
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+    useConfig: false
