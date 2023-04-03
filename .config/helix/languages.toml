@@ -1,0 +1,12 @@
+[[language]]
+name = "fish"
+formatter = { command = "fish_indent" }
+auto-format = true
+
+[[language]]
+name = "astro"
+language-server = { command = "astro-ls", args = ["--stdio"] }
+
+[[language]]
+name = "rust"
+config = { cargo = { allFeatures = true }, check = { command = "clippy" }, procMacro = { enable = true } }

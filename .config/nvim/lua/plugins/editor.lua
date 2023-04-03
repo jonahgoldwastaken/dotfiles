@@ -222,55 +222,6 @@ return {
 	},
 
 	{
-		"phaazon/hop.nvim",
-		keys = {
-			{
-				"f",
-				"<cmd>HopChar1AC<cr>",
-				{ "n", "v" },
-				remap = true,
-			},
-			{
-				"F",
-				"<cmd>HopChar1BC<cr>",
-				{ "n", "v" },
-				{ remap = true },
-			},
-			{
-				"t",
-				function()
-					require("hop").hint_char1 {
-						direction = require("hop.hint").HintDirection.AFTER_CURSOR,
-						current_line_only = true,
-						hint_offset = -1,
-					}
-				end,
-				{ "n", "v" },
-				{ remap = true },
-			},
-			{
-				"T",
-				function()
-					require("hop").hint_char1 {
-						direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
-						hint_offset = -1,
-					}
-				end,
-				{ "n", "v" },
-				{ remap = true },
-			},
-		},
-		opts = {
-			create_hl_autocmd = false,
-			keys = "asdghklqwertyuiopzxcvbnmfj",
-		},
-		config = function(_, opts)
-			opts.perm_method = require("hop.perm").TrieBacktrackFilling
-			require("hop").setup(opts)
-		end,
-	},
-
-	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		config = function()

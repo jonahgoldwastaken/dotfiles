@@ -1,0 +1,17 @@
+theme = "github_dark"
+
+[editor]
+true-color = true
+color-modes = true
+cursorline = true
+idle-timeout = 250
+line-number = "relative"
+mouse = false
+
+[editor.indent-guides]
+render = true
+skip-levels = 1
+
+[keys.normal]
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"

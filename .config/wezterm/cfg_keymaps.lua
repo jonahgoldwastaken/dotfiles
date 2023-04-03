@@ -5,7 +5,6 @@ return {
 	send_composed_key_when_right_alt_is_pressed = false,
 	send_composed_key_when_left_alt_is_pressed = true,
 	disable_default_key_bindings = true,
-	-- disable_default_mouse_bindings = true,
 	keys = {
 		{ key = "Enter", mods = "ALT", action = act.ToggleFullScreen },
 		{ key = "0", mods = "SUPER", action = act.ResetFontSize },
@@ -20,17 +19,27 @@ return {
 		{ key = "R", mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
 		{ key = "c", mods = "SUPER", action = act.CopyTo("Clipboard") },
 		{ key = "h", mods = "SUPER", action = act.HideApplication },
-		{ key = "k", mods = "SUPER", action = act.ClearScrollback("ScrollbackOnly") },
+		{
+			key = "k",
+			mods = "SUPER",
+			action = act.ClearScrollback("ScrollbackOnly"),
+		},
 		{
 			key = "l",
 			mods = "SHIFT|SUPER",
-			action = act.ShowLauncherArgs({ flags = "FUZZY|LAUNCH_MENU_ITEMS|DOMAINS" }),
+			action = act.ShowLauncherArgs({
+				flags = "FUZZY|LAUNCH_MENU_ITEMS|DOMAINS",
+			}),
 		},
 		{ key = "m", mods = "SUPER", action = act.Hide },
 		{ key = "n", mods = "SUPER", action = act.SpawnWindow },
 		{ key = "q", mods = "SUPER", action = act.QuitApplication },
 		{ key = "v", mods = "SUPER", action = act.PasteFrom("Clipboard") },
-		{ key = "w", mods = "SUPER", action = act.CloseCurrentTab({ confirm = true }) },
+		{
+			key = "w",
+			mods = "SUPER",
+			action = act.CloseCurrentTab({ confirm = true }),
+		},
 		{ key = "Copy", mods = "NONE", action = act.CopyTo("Clipboard") },
 		{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
 	},
@@ -114,184 +123,192 @@ return {
 		},
 	},
 
-	mouse_bindings = {
-		{
-			event = { Down = { streak = 1, button = "Left" } },
-			action = act.SelectTextAtMouseCursor("Cell"),
-		},
-		{
-			event = { Down = { streak = 1, button = "Left" } },
-			mods = "SHIFT",
-			action = act.ExtendSelectionToMouseCursor("Cell"),
-		},
-		{
-			event = { Down = { streak = 1, button = "Left" } },
-			mods = "ALT",
-			action = act.SelectTextAtMouseCursor("Block"),
-		},
-		{
-			event = { Down = { streak = 1, button = "Left" } },
-			mods = "SHIFT|ALT",
-			action = act.ExtendSelectionToMouseCursor("Block"),
-		},
-		{
-			event = { Down = { streak = 1, button = "Middle" } },
-			action = act.PasteFrom("PrimarySelection"),
-		},
-		{
-			event = { Down = { streak = 1, button = { WheelUp = 1 } } },
-			action = act.ScrollByCurrentEventWheelDelta,
-		},
-		{
-			event = { Down = { streak = 1, button = { WheelDown = 1 } } },
-			action = act.ScrollByCurrentEventWheelDelta,
-		},
-		{
-			event = { Down = { streak = 2, button = "Left" } },
-			action = act.SelectTextAtMouseCursor("Word"),
-		},
-		{
-			event = { Down = { streak = 3, button = "Left" } },
-			action = act.SelectTextAtMouseCursor("Line"),
-		},
-		{
-			event = { Drag = { streak = 1, button = "Left" } },
-			action = act.ExtendSelectionToMouseCursor("Cell"),
-		},
-		{
-			event = { Drag = { streak = 1, button = "Left" } },
-			mods = "ALT",
-			action = act.ExtendSelectionToMouseCursor("Block"),
-		},
-		{
-			event = { Drag = { streak = 1, button = "Left" } },
-			mods = "SHIFT|CTRL",
-			action = act.StartWindowDrag,
-		},
-		{
-			event = { Drag = { streak = 1, button = "Left" } },
-			mods = "SUPER",
-			action = act.StartWindowDrag,
-		},
-		{
-			event = { Drag = { streak = 2, button = "Left" } },
-			action = act.ExtendSelectionToMouseCursor("Word"),
-		},
-		{
-			event = { Drag = { streak = 3, button = "Left" } },
-			action = act.ExtendSelectionToMouseCursor("Line"),
-		},
-		{
-			event = { Up = { streak = 1, button = "Left" } },
-			action = act.CompleteSelectionOrOpenLinkAtMouseCursor("ClipboardAndPrimarySelection"),
-		},
-		{
-			event = { Up = { streak = 1, button = "Left" } },
-			mods = "SHIFT",
-			action = act.CompleteSelectionOrOpenLinkAtMouseCursor("ClipboardAndPrimarySelection"),
-		},
-		{
-			event = { Up = { streak = 1, button = "Left" } },
-			mods = "ALT",
-			action = act.CompleteSelection("ClipboardAndPrimarySelection"),
-		},
-		{
-			event = { Up = { streak = 1, button = "Left" } },
-			mods = "SHIFT|ALT",
-			action = act.CompleteSelectionOrOpenLinkAtMouseCursor("PrimarySelection"),
-		},
-		{
-			event = { Up = { streak = 2, button = "Left" } },
-			action = act.CompleteSelection("ClipboardAndPrimarySelection"),
-		},
-		{
-			event = { Up = { streak = 3, button = "Left" } },
-			action = act.CompleteSelection("ClipboardAndPrimarySelection"),
-		},
-		{
-			event = { Down = { streak = 1, button = "Left" } },
-			action = act.SelectTextAtMouseCursor("Cell"),
-		},
-		{
-			mods = "SHIFT",
-			event = { Down = { streak = 1, button = "Left" } },
-			action = act.ExtendSelectionToMouseCursor("Cell"),
-		},
-		{
-			mods = "ALT",
-			event = { Down = { streak = 1, button = "Left" } },
-			action = act.SelectTextAtMouseCursor("Block"),
-		},
-		{
-			mods = "SHIFT|ALT",
-			event = { Down = { streak = 1, button = "Left" } },
-			action = act.ExtendSelectionToMouseCursor("Block"),
-		},
-		{
-			event = { Down = { streak = 1, button = "Middle" } },
-			action = act.PasteFrom("PrimarySelection"),
-		},
-		{
-			event = { Down = { streak = 2, button = "Left" } },
-			action = act.SelectTextAtMouseCursor("Word"),
-		},
-		{
-			event = { Down = { streak = 3, button = "Left" } },
-			action = act.SelectTextAtMouseCursor("Line"),
-		},
-		{
-			event = { Drag = { streak = 1, button = "Left" } },
-			action = act.ExtendSelectionToMouseCursor("Cell"),
-		},
-		{
-			mods = "ALT",
-			event = { Drag = { streak = 1, button = "Left" } },
-			action = act.ExtendSelectionToMouseCursor("Block"),
-		},
-		{
-			mods = "SHIFT|CTRL",
-			event = { Drag = { streak = 1, button = "Left" } },
-			action = act.StartWindowDrag,
-		},
-		{
-			mods = "SUPER",
-			event = { Drag = { streak = 1, button = "Left" } },
-			action = act.StartWindowDrag,
-		},
-		{
-			event = { Drag = { streak = 2, button = "Left" } },
-			action = act.ExtendSelectionToMouseCursor("Word"),
-		},
-		{
-			event = { Drag = { streak = 3, button = "Left" } },
-			action = act.ExtendSelectionToMouseCursor("Line"),
-		},
-		{
-			event = { Up = { streak = 1, button = "Left" } },
-			action = act.CompleteSelectionOrOpenLinkAtMouseCursor("ClipboardAndPrimarySelection"),
-		},
-		{
-			mods = "SHIFT",
-			event = { Up = { streak = 1, button = "Left" } },
-			action = act.CompleteSelectionOrOpenLinkAtMouseCursor("ClipboardAndPrimarySelection"),
-		},
-		{
-			mods = "ALT",
-			event = { Up = { streak = 1, button = "Left" } },
-			action = act.CompleteSelection("ClipboardAndPrimarySelection"),
-		},
-		{
-			mods = "SHIFT|ALT",
-			event = { Up = { streak = 1, button = "Left" } },
-			action = act.CompleteSelectionOrOpenLinkAtMouseCursor("PrimarySelection"),
-		},
-		{
-			event = { Up = { streak = 2, button = "Left" } },
-			action = act.CompleteSelection("ClipboardAndPrimarySelection"),
-		},
-		{
-			event = { Up = { streak = 3, button = "Left" } },
-			action = act.CompleteSelection("ClipboardAndPrimarySelection"),
-		},
-	},
+	-- mouse_bindings = {
+	-- 	{
+	-- 		event = { Down = { streak = 1, button = "Left" } },
+	-- 		action = act.SelectTextAtMouseCursor("Cell"),
+	-- 	},
+	-- 	{
+	-- 		event = { Down = { streak = 1, button = "Left" } },
+	-- 		mods = "SHIFT",
+	-- 		action = act.ExtendSelectionToMouseCursor("Cell"),
+	-- 	},
+	-- 	{
+	-- 		event = { Down = { streak = 1, button = "Left" } },
+	-- 		mods = "ALT",
+	-- 		action = act.SelectTextAtMouseCursor("Block"),
+	-- 	},
+	-- 	{
+	-- 		event = { Down = { streak = 1, button = "Left" } },
+	-- 		mods = "SHIFT|ALT",
+	-- 		action = act.ExtendSelectionToMouseCursor("Block"),
+	-- 	},
+	-- 	{
+	-- 		event = { Down = { streak = 1, button = "Middle" } },
+	-- 		action = act.PasteFrom("PrimarySelection"),
+	-- 	},
+	-- 	{
+	-- 		event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+	-- 		action = act.ScrollByCurrentEventWheelDelta,
+	-- 	},
+	-- 	{
+	-- 		event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+	-- 		action = act.ScrollByCurrentEventWheelDelta,
+	-- 	},
+	-- 	{
+	-- 		event = { Down = { streak = 2, button = "Left" } },
+	-- 		action = act.SelectTextAtMouseCursor("Word"),
+	-- 	},
+	-- 	{
+	-- 		event = { Down = { streak = 3, button = "Left" } },
+	-- 		action = act.SelectTextAtMouseCursor("Line"),
+	-- 	},
+	-- 	{
+	-- 		event = { Drag = { streak = 1, button = "Left" } },
+	-- 		action = act.ExtendSelectionToMouseCursor("Cell"),
+	-- 	},
+	-- 	{
+	-- 		event = { Drag = { streak = 1, button = "Left" } },
+	-- 		mods = "ALT",
+	-- 		action = act.ExtendSelectionToMouseCursor("Block"),
+	-- 	},
+	-- 	{
+	-- 		event = { Drag = { streak = 1, button = "Left" } },
+	-- 		mods = "SHIFT|CTRL",
+	-- 		action = act.StartWindowDrag,
+	-- 	},
+	-- 	{
+	-- 		event = { Drag = { streak = 1, button = "Left" } },
+	-- 		mods = "SUPER",
+	-- 		action = act.StartWindowDrag,
+	-- 	},
+	-- 	{
+	-- 		event = { Drag = { streak = 2, button = "Left" } },
+	-- 		action = act.ExtendSelectionToMouseCursor("Word"),
+	-- 	},
+	-- 	{
+	-- 		event = { Drag = { streak = 3, button = "Left" } },
+	-- 		action = act.ExtendSelectionToMouseCursor("Line"),
+	-- 	},
+	-- 	{
+	-- 		event = { Up = { streak = 1, button = "Left" } },
+	-- 		action = act.CompleteSelectionOrOpenLinkAtMouseCursor(
+	-- 			"ClipboardAndPrimarySelection"
+	-- 		),
+	-- 	},
+	-- 	{
+	-- 		event = { Up = { streak = 1, button = "Left" } },
+	-- 		mods = "SHIFT",
+	-- 		action = act.CompleteSelectionOrOpenLinkAtMouseCursor(
+	-- 			"ClipboardAndPrimarySelection"
+	-- 		),
+	-- 	},
+	-- 	{
+	-- 		event = { Up = { streak = 1, button = "Left" } },
+	-- 		mods = "ALT",
+	-- 		action = act.CompleteSelection("ClipboardAndPrimarySelection"),
+	-- 	},
+	-- 	{
+	-- 		event = { Up = { streak = 1, button = "Left" } },
+	-- 		mods = "SHIFT|ALT",
+	-- 		action = act.CompleteSelectionOrOpenLinkAtMouseCursor("PrimarySelection"),
+	-- 	},
+	-- 	{
+	-- 		event = { Up = { streak = 2, button = "Left" } },
+	-- 		action = act.CompleteSelection("ClipboardAndPrimarySelection"),
+	-- 	},
+	-- 	{
+	-- 		event = { Up = { streak = 3, button = "Left" } },
+	-- 		action = act.CompleteSelection("ClipboardAndPrimarySelection"),
+	-- 	},
+	-- 	{
+	-- 		event = { Down = { streak = 1, button = "Left" } },
+	-- 		action = act.SelectTextAtMouseCursor("Cell"),
+	-- 	},
+	-- 	{
+	-- 		mods = "SHIFT",
+	-- 		event = { Down = { streak = 1, button = "Left" } },
+	-- 		action = act.ExtendSelectionToMouseCursor("Cell"),
+	-- 	},
+	-- 	{
+	-- 		mods = "ALT",
+	-- 		event = { Down = { streak = 1, button = "Left" } },
+	-- 		action = act.SelectTextAtMouseCursor("Block"),
+	-- 	},
+	-- 	{
+	-- 		mods = "SHIFT|ALT",
+	-- 		event = { Down = { streak = 1, button = "Left" } },
+	-- 		action = act.ExtendSelectionToMouseCursor("Block"),
+	-- 	},
+	-- 	{
+	-- 		event = { Down = { streak = 1, button = "Middle" } },
+	-- 		action = act.PasteFrom("PrimarySelection"),
+	-- 	},
+	-- 	{
+	-- 		event = { Down = { streak = 2, button = "Left" } },
+	-- 		action = act.SelectTextAtMouseCursor("Word"),
+	-- 	},
+	-- 	{
+	-- 		event = { Down = { streak = 3, button = "Left" } },
+	-- 		action = act.SelectTextAtMouseCursor("Line"),
+	-- 	},
+	-- 	{
+	-- 		event = { Drag = { streak = 1, button = "Left" } },
+	-- 		action = act.ExtendSelectionToMouseCursor("Cell"),
+	-- 	},
+	-- 	{
+	-- 		mods = "ALT",
+	-- 		event = { Drag = { streak = 1, button = "Left" } },
+	-- 		action = act.ExtendSelectionToMouseCursor("Block"),
+	-- 	},
+	-- 	{
+	-- 		mods = "SHIFT|CTRL",
+	-- 		event = { Drag = { streak = 1, button = "Left" } },
+	-- 		action = act.StartWindowDrag,
+	-- 	},
+	-- 	{
+	-- 		mods = "SUPER",
+	-- 		event = { Drag = { streak = 1, button = "Left" } },
+	-- 		action = act.StartWindowDrag,
+	-- 	},
+	-- 	{
+	-- 		event = { Drag = { streak = 2, button = "Left" } },
+	-- 		action = act.ExtendSelectionToMouseCursor("Word"),
+	-- 	},
+	-- 	{
+	-- 		event = { Drag = { streak = 3, button = "Left" } },
+	-- 		action = act.ExtendSelectionToMouseCursor("Line"),
+	-- 	},
+	-- 	{
+	-- 		event = { Up = { streak = 1, button = "Left" } },
+	-- 		action = act.CompleteSelectionOrOpenLinkAtMouseCursor(
+	-- 			"ClipboardAndPrimarySelection"
+	-- 		),
+	-- 	},
+	-- 	{
+	-- 		mods = "SHIFT",
+	-- 		event = { Up = { streak = 1, button = "Left" } },
+	-- 		action = act.CompleteSelectionOrOpenLinkAtMouseCursor(
+	-- 			"ClipboardAndPrimarySelection"
+	-- 		),
+	-- 	},
+	-- 	{
+	-- 		mods = "ALT",
+	-- 		event = { Up = { streak = 1, button = "Left" } },
+	-- 		action = act.CompleteSelection("ClipboardAndPrimarySelection"),
+	-- 	},
+	-- 	{
+	-- 		mods = "SHIFT|ALT",
+	-- 		event = { Up = { streak = 1, button = "Left" } },
+	-- 		action = act.CompleteSelectionOrOpenLinkAtMouseCursor("PrimarySelection"),
+	-- 	},
+	-- 	{
+	-- 		event = { Up = { streak = 2, button = "Left" } },
+	-- 		action = act.CompleteSelection("ClipboardAndPrimarySelection"),
+	-- 	},
+	-- 	{
+	-- 		event = { Up = { streak = 3, button = "Left" } },
+	-- 		action = act.CompleteSelection("ClipboardAndPrimarySelection"),
+	-- 	},
+	-- },
 }

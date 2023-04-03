@@ -15,7 +15,7 @@ return {
 		},
 		config = function()
 			require("util").on_attach(function(client, buffer)
-				require("lsp-inlayhints").on_attach(client, buffer)
+				if client.name ~= "tsserver" then require("lsp-inlayhints").on_attach(client, buffer) end
 				require("plugins.lsp.format").on_attach(client, buffer)
 				require("plugins.lsp.keymaps").on_attach(client, buffer)
 			end)
@@ -55,42 +55,51 @@ return {
 		config = function()
 			local nls = require "null-ls"
 			require("mason-null-ls").setup {
-				ensure_installed = nil,
+				ensure_installed = {
+					"prettierd",
+					"eslint_d",
+				},
 				automatic_installation = false,
 				automatic_setup = true,
-			}
-			require("mason-null-ls").setup_handlers {
-				function(source_name, methods)
-					require "mason-null-ls.automatic_setup"(source_name, methods)
-				end,
+				handlers = {
+					function(source_name, methods)
+						require "mason-null-ls.automatic_setup"(source_name, methods)
+					end,
 
-				prettier = function()
-					nls.register(nls.builtins.formatting.prettier.with {
-						extra_filetypes = {
-							"markdown",
-							"astro",
-							"svelte",
-						},
-					})
-				end,
+					prettierd = function()
+						nls.register(nls.builtins.formatting.prettierd.with {
+							extra_filetypes = {
+								"markdown",
+								"astro",
+								"svelte",
+							},
+						})
+					end,
 
-				eslint_d = function()
-					local opts = {
-						extra_filetypes = { "astro", "svelte" },
-						condition = function(utils)
-							return utils.root_has_file { ".eslintrc.json", ".eslintrc.js", ".eslintrc.cjs" }
-						end,
-					}
-					nls.register(nls.builtins.diagnostics.eslint_d.with(opts))
-					nls.register(nls.builtins.code_actions.eslint_d.with(opts))
-					nls.register(nls.builtins.code_actions.gitsigns)
-				end,
+					eslint_d = function()
+						local opts = {
+							extra_filetypes = { "astro", "svelte" },
+							condition = function(utils)
+								return utils.root_has_file {
+									".eslintrc.json",
+									".eslintrc.js",
+									".eslintrc.cjs",
+									".eslintrc",
+								}
+							end,
+						}
+						nls.register(nls.builtins.diagnostics.eslint_d.with(opts))
+						nls.register(nls.builtins.code_actions.eslint_d.with(opts))
+					end,
+				},
 			}
+
 			nls.setup {
 				debounce = 150,
 				save_after_format = false,
 				sources = {
 					nls.builtins.formatting.fish_indent,
+					nls.builtins.code_actions.gitsigns,
 				},
 			}
 		end,

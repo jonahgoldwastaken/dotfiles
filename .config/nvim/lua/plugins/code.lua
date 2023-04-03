@@ -141,36 +141,6 @@ return {
 		end,
 	},
 
-	{
-		"zbirenbaum/copilot.lua",
-		event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			require("copilot").setup {
-				panel = { enabled = false },
-				suggestion = { enabled = false },
-			}
-			require("copilot_cmp").setup()
-		end,
-	},
-
-	{
-		"jonahgoldwastaken/copilot-status.nvim",
-		dependencies = { "copilot.lua" },
-		config = true,
-		event = { "BufReadPost", "BufNewFile" },
-		module = true,
-		opts = {
-			icons = {
-				idle = " ",
-				error = " ",
-				offline = " ",
-				warning = " ",
-				loading = " ",
-			},
-			debug = true,
-		},
-	},
-
 	-- auto pairs
 	{
 		"echasnovski/mini.pairs",

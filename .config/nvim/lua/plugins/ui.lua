@@ -168,19 +168,6 @@ return {
 		end,
 	},
 
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			require("indent_blankline").setup {
-				filetype_exclude = { "help", "NvimTree", "glowpreview", "neo-tree", "Trouble", "lazy" },
-				buftype_exclude = { "terminal", "nofile" },
-				show_trailing_blankline_indent = false,
-				show_current_context = false,
-			}
-		end,
-	},
-
 	-- active indent guide and indent text objects
 	{
 		"echasnovski/mini.indentscope",

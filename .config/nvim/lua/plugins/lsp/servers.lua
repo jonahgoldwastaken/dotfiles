@@ -50,8 +50,6 @@ return {
 			},
 		},
 	},
-	prismals = {},
-	gopls = {},
 	yamlls = {},
 	taplo = {},
 	html = {},
