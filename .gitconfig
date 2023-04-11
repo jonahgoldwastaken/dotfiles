@@ -6,7 +6,7 @@
 	ui = true
 
 [user]
-	name = Jonah Meijers (GitHub)
+	name = Jonah Meijers
 	email = jonahmeijers97@gmail.com
 
 [commit]
@@ -49,4 +49,13 @@
 	user = jonahgoldwastaken
 
 [include]
-	path = ~/programmeren/octocolors.nvim/extras/delta/octocolors_dark.gitconfig
+	path = ~/personal/octocolors.nvim/extras/delta/octocolors_dark.gitconfig
+
+[includeIf "gitdir:~/work/**"]
+	path = ~/work/.gitconfig
+
+[includeIf "gitdir:~/personal/**"]
+	path = ~/personal/.gitconfig
+
+[includeIf "gitdir:~/.dotfiles/**"]
+	path = ~/personal/.gitconfig
