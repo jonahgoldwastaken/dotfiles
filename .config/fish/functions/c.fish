@@ -1,15 +1,7 @@
-for cfg in (path basename ~/.config/*)
-    complete -f -c c -a $cfg
+for folder in (path basename $HOME/.config/*)
+    complete -f -c c -a $folder
 end
 
-function c --argument-name config
-    set -l C_FOLDER "/Users/jonahmeijers/.config"
-    if not test -d "$C_FOLDER/$config"
-        set_color red
-        echo "Folder does not exist"
-        set_color normal
-        return
-    end
-    cd "$C_FOLDER/$config"
-    nvim
+function c --description "Open a config folder" --a config
+    folder $HOME/.config $config
 end
