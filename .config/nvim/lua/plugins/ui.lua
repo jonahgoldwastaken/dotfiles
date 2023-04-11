@@ -84,7 +84,7 @@ return {
 						},
 					},
 					lualine_c = {
-						"filename",
+						{ "filename", path = 1 },
 						{
 							function() return require("nvim-navic").get_location() end,
 							cond = function()
