@@ -290,5 +290,5 @@ copy_on_select true
 
 // The folder in which Zellij will look for themes
 
-theme_dir "/Users/jonahmeijers/.config/zellij/themes"
+//theme_dir "~/.config/zellij/themes"
 
