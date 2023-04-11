@@ -1,4 +1,4 @@
-local indent = 2
+local indent = 4
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -8,7 +8,7 @@ vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.conceallevel = 3
 vim.opt.confirm = true
 vim.opt.cursorline = true
-vim.opt.expandtab = false
+vim.opt.expandtab = true
 vim.opt.formatoptions = "jcroqlnt"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.grepprg = "rg --vimgrep"

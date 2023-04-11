@@ -25,7 +25,7 @@ local opts = {
 		colorscheme = { "octocolors.nvim" },
 	},
 	dev = {
-		path = "~/programmeren",
+		path = "~/personal",
 		patterns = { "jonahgoldwastaken" },
 	},
 	ui = {
