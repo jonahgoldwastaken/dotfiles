@@ -17,15 +17,24 @@ return {
 		config = true,
 		event = { "BufReadPre", "BufNewFile" },
 		module = true,
-		opts = {
-			icons = {
-				idle = " ",
-				error = " ",
-				offline = " ",
-				warning = " ",
-				loading = " ",
-			},
-			debug = true,
-		},
+		opts =
+				function()
+					if vim.env.TERM ~= "alacritty" then
+						return {
+							icons = {
+								idle = " ",
+								error = " ",
+								offline = " ",
+								warning = " ",
+								loading = " ",
+							},
+							debug = true,
+						}
+					end
+
+					return {
+						debug = true,
+					}
+				end,
 	},
 }

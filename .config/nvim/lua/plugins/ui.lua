@@ -3,7 +3,6 @@ local icons = require "config.icons"
 return {
 	{
 		"rcarriga/nvim-notify",
-		dependencies = { "nvim-nonicons" },
 		keys = {
 			{
 				"<leader>nd",
@@ -12,7 +11,9 @@ return {
 			},
 		},
 		config = function(_, opts)
-			opts.icons = require("nvim-nonicons/extentions/nvim-notify").icons
+			if vim.env.TERM ~= "alacritty" then
+				opts.icons = require("nvim-nonicons/extentions/nvim-notify").icons
+			end
 			require("notify").setup(opts)
 		end,
 		opts = {
@@ -204,8 +205,8 @@ return {
 					enabled = true,
 					format = "lsp_progress",
 					format_done = {
-						{ icons.ui.Check, hl_group = "NoiceLspProgressSpinner" },
-						{ "{data.progress.title} ", hl_group = "NoiceLspProgressTitle" },
+						{ icons.ui.Check,            hl_group = "NoiceLspProgressSpinner" },
+						{ "{data.progress.title} ",  hl_group = "NoiceLspProgressTitle" },
 						{ "{data.progress.client} ", hl_group = "NoiceLspProgressClient" },
 					},
 					throttle = 1000 / 30, -- frequency to update lsp progress message
@@ -261,8 +262,8 @@ return {
 				{
 					filter = {
 						any = {
-							{ event = "msg_show", kind = "", find = "[w]" },
-							{ event = "notify", kind = "info", find = "Toggling" },
+							{ event = "msg_show", kind = "",     find = "[w]" },
+							{ event = "notify",   kind = "info", find = "Toggling" },
 						},
 					},
 					opts = {
@@ -277,15 +278,41 @@ return {
 				},
 			},
 		},
-	  -- stylua: ignore
-	  keys = {
-	    { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
-	    { "<leader>nl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
-	    { "<leader>nh", function() require("noice").cmd("history") end, desc = "Noice History" },
-	    { "<leader>na", function() require("noice").cmd("all") end, desc = "Noice All" },
-	    { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true },
-	    { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true },
-	  },
+		-- stylua: ignore
+		keys = {
+			{
+				"<S-Enter>",
+				function() require("noice").redirect(vim.fn.getcmdline()) end,
+				mode = "c",
+				desc =
+				"Redirect Cmdline"
+			},
+			{
+				"<leader>nl",
+				function() require("noice").cmd("last") end,
+				desc =
+				"Noice Last Message"
+			},
+			{
+				"<leader>nh",
+				function() require("noice").cmd("history") end,
+				desc =
+				"Noice History"
+			},
+			{ "<leader>na", function() require("noice").cmd("all") end, desc = "Noice All" },
+			{
+				"<c-f>",
+				function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end,
+				silent = true,
+				expr = true
+			},
+			{
+				"<c-b>",
+				function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end,
+				silent = true,
+				expr = true
+			},
+		},
 	},
 
 	{
@@ -340,11 +367,11 @@ return {
 					local stats = require("lazy").stats()
 					local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
 					dashboard.section.footer.val = icons.ui.Fire
-						.. " Neovim loaded "
-						.. stats.count
-						.. " plugins in "
-						.. ms
-						.. "ms"
+							.. " Neovim loaded "
+							.. stats.count
+							.. " plugins in "
+							.. ms
+							.. "ms"
 					pcall(vim.cmd.AlphaRedraw)
 				end,
 			})
@@ -373,6 +400,7 @@ return {
 	{
 		"yamatsum/nvim-nonicons",
 		dependencies = { "nvim-web-devicons" },
+		cond = function() return vim.env.TERM ~= "alacritty" end,
 		config = function()
 			local nonicons = require "nvim-nonicons"
 			nonicons.setup()

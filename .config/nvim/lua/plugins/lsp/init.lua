@@ -5,8 +5,8 @@ return {
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-			{ "folke/neodev.nvim", config = true },
+			{ "folke/neoconf.nvim",           cmd = "Neoconf", config = true },
+			{ "folke/neodev.nvim",            config = true },
 			{ "lvimuser/lsp-inlayhints.nvim", config = true },
 			"mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
@@ -34,7 +34,7 @@ return {
 
 			local servers = require "plugins.lsp.servers"
 			local capabilities =
-				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+					require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 			require("mason-lspconfig").setup {}
 
@@ -63,9 +63,8 @@ return {
 				automatic_setup = true,
 				handlers = {
 					function(source_name, methods)
-						require "mason-null-ls.automatic_setup"(source_name, methods)
+						require "mason-null-ls.automatic_setup" (source_name, methods)
 					end,
-
 					prettierd = function()
 						nls.register(nls.builtins.formatting.prettierd.with {
 							extra_filetypes = {
@@ -75,7 +74,6 @@ return {
 							},
 						})
 					end,
-
 					eslint_d = function()
 						local opts = {
 							extra_filetypes = { "astro", "svelte" },
@@ -108,12 +106,11 @@ return {
 	{
 		"williamboman/mason.nvim",
 		cmd = "Mason",
-		config = function()
-			require("mason").setup {
+		opts = function()
+			local opts = {
 				PATH = "prepend",
 				ui = {
 					border = "rounded",
-					icons = require("nvim-nonicons.extentions.mason").icons,
 					keymaps = {
 						toggle_server_expand = "<CR>",
 						install_server = "i",
@@ -127,7 +124,14 @@ return {
 				},
 				log_level = vim.log.levels.INFO,
 			}
+
+			if vim.env.TERM ~= "alacritty" then
+				opts.ui.icons = require("nvim-nonicons.extentions.mason").icons
+			end
+
+			return opts
 		end,
+		config = true,
 	},
 
 	"b0o/schemastore.nvim",
