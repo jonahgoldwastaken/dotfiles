@@ -50,7 +50,13 @@ return {
 			},
 		},
 	},
-	yamlls = {},
+	yamlls = {
+		settings = {
+			yaml = {
+				keyOrdering = false,
+			},
+		},
+	},
 	taplo = {},
 	html = {},
 	emmet_ls = {
