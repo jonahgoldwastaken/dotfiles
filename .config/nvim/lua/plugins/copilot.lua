@@ -2,6 +2,10 @@ return {
     {
         "zbirenbaum/copilot.lua",
         event = { "BufReadPre", "BufNewFile" },
+        cond = function()
+            local path = vim.loop.cwd()
+            return path ~= nil and path:find("work") == nil
+        end,
         config = function()
             require("copilot").setup {
                 panel = { enabled = false },
@@ -15,6 +19,10 @@ return {
         "jonahgoldwastaken/copilot-status.nvim",
         dependencies = { "copilot.lua" },
         event = { "BufReadPre", "BufNewFile" },
+        cond = function()
+            local path = vim.loop.cwd()
+            return path ~= nil and path:find("work") == nil
+        end,
         opts = function()
             if vim.env.TERM ~= "alacritty" then
                 return {

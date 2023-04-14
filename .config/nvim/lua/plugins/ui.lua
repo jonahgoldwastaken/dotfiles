@@ -106,7 +106,11 @@ return {
                             icon = { icons.ui.Tag },
                             cond = function() return package.loaded["grapple"] and require("grapple").exists() end,
                         },
-                        { function() return require("copilot_status").status_string() end },
+                        {
+                            function() return require("copilot_status").status_string() end,
+                            cnd = function() return package.loaded["copilot_status"] and
+                                require('copilot_status').enabled() end
+                        },
                         {
                             "diagnostics",
                             source = { "nvim_diagnostic" },
