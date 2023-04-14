@@ -101,6 +101,7 @@ return {
                                 }
                                 nls.register(nls.builtins.diagnostics.eslint_d.with(o))
                                 nls.register(nls.builtins.code_actions.eslint_d.with(o))
+                                nls.register(nls.builtins.formatting.eslint_d.with(o))
                             end,
                         },
                     })
