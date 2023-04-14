@@ -198,6 +198,9 @@ return {
                         previewer = false,
                         layout_strategy = "center",
                     },
+                    lsp_references = {
+                        fname_width = 80,
+                    },
                     lsp_document_symbols = {
                         wrap_results = false,
                         theme = "dropdown",
