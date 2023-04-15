@@ -68,10 +68,9 @@ return {
                 opts = function(_, opts)
                     local nls = require "null-ls"
                     vim.tbl_extend("force", opts or {}, {
-                        automatic_installation = false,
+                        automatic_installation = true,
                         ensure_installed = {
                             "prettierd",
-                            "eslint_d",
                             "stylua",
                         },
                         handlers = {
@@ -87,22 +86,22 @@ return {
                                     },
                                 })
                             end,
-                            eslint_d = function()
-                                local o = {
-                                    extra_filetypes = { "astro", "svelte" },
-                                    condition = function(utils)
-                                        return utils.root_has_file {
-                                            ".eslintrc.json",
-                                            ".eslintrc.js",
-                                            ".eslintrc.cjs",
-                                            ".eslintrc",
-                                        }
-                                    end,
-                                }
-                                nls.register(nls.builtins.diagnostics.eslint_d.with(o))
-                                nls.register(nls.builtins.code_actions.eslint_d.with(o))
-                                nls.register(nls.builtins.formatting.eslint_d.with(o))
-                            end,
+                            -- eslint = function()
+                            --     local o = {
+                            --         extra_filetypes = { "astro", "svelte" },
+                            --         condition = function(utils)
+                            --             return utils.root_has_file {
+                            --                 ".eslintrc.json",
+                            --                 ".eslintrc.js",
+                            --                 ".eslintrc.cjs",
+                            --                 ".eslintrc",
+                            --             }
+                            --         end,
+                            --     }
+                            --     nls.register(nls.builtins.diagnostics.eslint.with(o))
+                            --     nls.register(nls.builtins.code_actions.eslint.with(o))
+                            --     nls.register(nls.builtins.formatting.eslint.with(o))
+                            -- end,
                         },
                     })
                 end,
