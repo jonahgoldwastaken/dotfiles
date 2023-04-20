@@ -534,4 +534,12 @@ return {
         },
         keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
     },
+
+    {
+        "sQVe/bufignore.nvim",
+        event = "VeryLazy",
+        opts = {
+
+        }
+    }
 }
