@@ -54,7 +54,7 @@ local opts = {
 			},
 		},
 	},
-	checker = { enabled = false },
+	checker = { enabled = true },
 	performance = {
 		cache = { enabled = true },
 		rtp = {
