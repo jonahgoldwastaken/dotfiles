@@ -9,20 +9,39 @@ end
 
 return {
 	{
-		"jonahgoldwastaken/octocolors.nvim",
+		"projekt0n/github-nvim-theme",
 		lazy = false,
 		priority = 1000,
-		dev = true,
 		config = function()
 			vim.api.nvim_create_user_command("AutoDarkMode", set_color_scheme, { nargs = 0 })
 
 			vim.opt.background = vim.env.os_theme or "dark"
 
-			local octocolors = require "octocolors"
-			octocolors.setup {
-				sidebars = { "lazy", "neo-tree", "qf", "vista_kind", "help" },
+			local colorscheme = require "github-theme"
+			colorscheme.setup {
+				darken = {
+					floats = true,
+				},
 			}
-			octocolors.load()
+
+			vim.cmd "colorscheme github_dark"
 		end,
 	},
+	-- {
+	-- 	"jonahgoldwastaken/octocolors.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	dev = true,
+	-- 	config = function()
+	-- 		vim.api.nvim_create_user_command("AutoDarkMode", set_color_scheme, { nargs = 0 })
+	--
+	-- 		vim.opt.background = vim.env.os_theme or "dark"
+	--
+	-- 		local octocolors = require "octocolors"
+	-- 		octocolors.setup {
+	-- 			sidebars = { "lazy", "neo-tree", "qf", "vista_kind", "help" },
+	-- 		}
+	-- 		octocolors.load()
+	-- 	end,
+	-- },
 }

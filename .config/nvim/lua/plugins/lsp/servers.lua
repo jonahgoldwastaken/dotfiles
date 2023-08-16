@@ -1,4 +1,7 @@
+local util = require "lspconfig.util"
+
 return {
+	gopls = {},
 	rust_analyzer = {
 		settings = {
 			["rust-analyzer"] = {
@@ -10,14 +13,16 @@ return {
 		on_init = function(new_client, _) new_client.offset_encoding = "utf-16" end,
 	},
 	astro = {},
-	tsserver = {},
+	tsserver = {
+		init_options = {
+			preferences = {
+				importModuleSpecifierPreference = "non-relative",
+			},
+		},
+		root_dir = util.find_git_ancestor,
+	},
 	eslint = {
-		on_attach = function(_client, bufnr)
-			-- vim.api.nvim_create_autocmd("BufWritePre", {
-			-- 	buffer = bufnr,
-			-- 	callback = function(_ev) vim.cmd "EslintFixAll" end,
-			-- })
-		end,
+		root_dir = util.find_git_ancestor,
 	},
 	svelte = {},
 	volar = {
@@ -37,11 +42,7 @@ return {
 		},
 	},
 	tailwindcss = {
-		root_dir = require("lspconfig.util").root_pattern(
-			"tailwind.config.js",
-			"tailwind.config.ts",
-			"tailwind.config.cjs"
-		),
+		root_dir = util.root_pattern("tailwind.config.js", "tailwind.config.ts", "tailwind.config.cjs"),
 	},
 	lua_ls = {
 		single_file_support = true,

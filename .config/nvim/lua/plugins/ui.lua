@@ -68,7 +68,7 @@ return {
 						statusline = { "alpha", "lazy", "mason", "TelescopePrompt" },
 					},
 				},
-				extensions = { "nvim-tree", "neo-tree", "quickfix", "nvim-dap-ui" },
+				extensions = { "nvim-tree", "neo-tree", "quickfix" },
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = {
@@ -96,7 +96,7 @@ return {
 						{
 							require("noice").api.status.mode.get,
 							cond = require("noice").api.status.mode.has,
-							color = { fg = require("octocolors.colors").get_colors().colors.orange },
+							-- color = { fg = require("octocolors.colors").get_colors().colors.orange },
 						},
 						{
 							function()
@@ -392,11 +392,11 @@ return {
 				default = false,
 				color_icons = false,
 				override = {
-					default_icon = {
-						icon = require("config.icons").documents.File,
-						color = require("octocolors.colors").get_colors().colors.fg,
-						name = "Default",
-					},
+					-- default_icon = {
+					-- 	icon = require("config.icons").documents.File,
+					-- 	color = require("octocolors.colors").get_colors().colors.fg,
+					-- 	name = "Default",
+					-- },
 				},
 			}
 		end,
@@ -410,10 +410,10 @@ return {
 		config = function()
 			local nonicons = require "nvim-nonicons"
 			nonicons.setup()
-			require("nvim-web-devicons").set_default_icon(
-				nonicons.get "file",
-				require("octocolors.colors").get_colors().colors.fg
-			)
+			-- require("nvim-web-devicons").set_default_icon(
+			-- 	nonicons.get "file",
+			-- 	require("octocolors.colors").get_colors().colors.fg
+			-- )
 		end,
 		event = "VeryLazy",
 	},

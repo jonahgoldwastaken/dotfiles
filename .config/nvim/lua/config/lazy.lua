@@ -22,7 +22,7 @@ local opts = {
 	defaults = { lazy = true },
 	install = {
 		missing = true,
-		colorscheme = { "octocolors.nvim" },
+		colorscheme = { "github-nvim-theme" },
 	},
 	dev = {
 		path = "~/personal",

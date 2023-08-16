@@ -68,7 +68,6 @@ return {
 		config = function()
 			local nls = require "null-ls"
 			nls.setup {
-				debounce = 150,
 				save_after_format = false,
 				sources = {
 					nls.builtins.formatting.fish_indent,
@@ -77,7 +76,7 @@ return {
 			}
 
 			require("mason-null-ls").setup {
-				automatic_installation = true,
+				automatic_installation = false,
 				ensure_installed = {
 					"prettierd",
 					"stylua",
@@ -86,19 +85,17 @@ return {
 					function(source_name, methods)
 						require "mason-null-ls.automatic_setup"(source_name, methods)
 					end,
-					eslint_d = function() nls.register(nls.builtins.formatting.eslint_d) end,
 					prettierd = function()
-						if nls.is_registered "eslint_d" then
-							return
-						else
-							nls.register(nls.builtins.formatting.prettierd.with {
-								extra_filetypes = {
-									"markdown",
-									"astro",
-									"svelte",
-								},
-							})
-						end
+						nls.register(nls.builtins.formatting.prettierd.with {
+							condition = function(utils)
+								return utils.root_has_file { "prettier.config.js", ".prettierrc" }
+							end,
+							extra_filetypes = {
+								"markdown",
+								"astro",
+								"svelte",
+							},
+						})
 					end,
 				},
 			}
