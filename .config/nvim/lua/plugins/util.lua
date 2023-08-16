@@ -1,4 +1,11 @@
 return {
+    -- Plenary/util functions
+    "nvim-lua/plenary.nvim",
+
+    -- Nice UI
+    "MunifTanjim/nui.nvim",
+
+    -- Session storage
     {
         "folke/persistence.nvim",
         event = { "BufReadPre", "BufNewFile" },
@@ -18,21 +25,20 @@ return {
         },
     },
 
-    {
-        "ojroques/nvim-osc52",
-        event = { "BufReadPost", "BufNewFile" },
-        config = function()
-            local function copy()
-                if vim.v.event.operator == "y" and vim.v.event.regname == "+" then
-                    require("osc52").copy_register "+"
-                end
-            end
-
-            vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
-        end,
-    },
-
-    "nvim-lua/plenary.nvim",
-
-    "MunifTanjim/nui.nvim",
+    -- Icons
+	{
+		"nvim-tree/nvim-web-devicons",
+		config = function()
+			require("nvim-web-devicons").setup {
+				default = false,
+				color_icons = false,
+				override = {
+					default_icon = {
+						icon = require "util.icons".documents.File,
+						name = "Default",
+					},
+				},
+			}
+		end,
+	},
 }

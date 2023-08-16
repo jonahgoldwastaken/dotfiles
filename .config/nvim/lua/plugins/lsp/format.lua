@@ -11,6 +11,7 @@ function M.toggle()
 	else
 		M.enabled = not M.enabled
 	end
+
 	if M.enabled then
 		Util.info("Enabled format on save", { title = "Format" })
 	else
@@ -21,17 +22,14 @@ end
 function M.format()
 	local buf = vim.api.nvim_get_current_buf()
 	local ft = vim.bo[buf].filetype
-	local have_nls = #require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0
+	local have_formatter = #require("formatter.util").get_available_formatters_for_ft(ft) > 0
 
 	if M.enabled then
-		vim.lsp.buf.format {
-			bufnr = buf,
-			timeout = nil,
-			filter = function(client)
-				if have_nls then return client.name == "null-ls" end
-				return client.name ~= "null-ls"
-			end,
-		}
+        if (have_formatter) then
+            vim.cmd "Format"
+        else
+            vim.lsp.buf.format { bufnr = buf }
+        end
 	end
 end
 

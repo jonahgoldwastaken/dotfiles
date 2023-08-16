@@ -1,58 +1,7 @@
-local icons = require "config.icons"
+local icons = require "util.icons"
 
 return {
-	{
-		"rcarriga/nvim-notify",
-		keys = {
-			{
-				"<leader>nd",
-				function() require("notify").dismiss { silent = true, pending = true } end,
-				desc = "Delete all Notifications",
-			},
-		},
-		config = function(_, opts)
-			if vim.env.TERM ~= "alacritty" then
-				opts.icons = require("nvim-nonicons/extentions/nvim-notify").icons
-			end
-			require("notify").setup(opts)
-		end,
-		opts = {
-			timeout = 2000,
-			max_height = function() return math.floor(vim.o.lines * 0.75) end,
-			max_width = function() return math.floor(vim.o.columns * 0.75) end,
-			render = "simple",
-			on_open = function(win)
-				if vim.api.nvim_win_is_valid(win) then
-					vim.api.nvim_win_set_config(win, {
-						border = "rounded",
-					})
-				end
-			end,
-		},
-	},
-
-	{
-		"stevearc/dressing.nvim",
-		opts = {
-			win_options = {
-				winblend = 0,
-				wrap = false,
-			},
-		},
-		init = function()
-			---@diagnostic disable-next-line: duplicate-set-field
-			vim.ui.select = function(...)
-				require("lazy").load { plugins = { "dressing.nvim" } }
-				return vim.ui.select(...)
-			end
-			---@diagnostic disable-next-line: duplicate-set-field
-			vim.ui.input = function(...)
-				require("lazy").load { plugins = { "dressing.nvim" } }
-				return vim.ui.input(...)
-			end
-		end,
-	},
-
+    -- Statusline
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
@@ -85,18 +34,11 @@ return {
 					},
 					lualine_c = {
 						{ "filename", path = 1 },
-						{
-							function() return require("nvim-navic").get_location() end,
-							cond = function()
-								return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
-							end,
-						},
 					},
 					lualine_x = {
 						{
 							require("noice").api.status.mode.get,
 							cond = require("noice").api.status.mode.has,
-							-- color = { fg = require("octocolors.colors").get_colors().colors.orange },
 						},
 						{
 							function()
@@ -114,7 +56,6 @@ return {
 							"diagnostics",
 							source = { "nvim_diagnostic" },
 							sections = { "error" },
-							colored = false,
 							always_visible = true,
 							symbols = { error = icons.diagnostics.Error },
 							separator = "",
@@ -123,7 +64,6 @@ return {
 							"diagnostics",
 							source = { "nvim" },
 							sections = { "warn" },
-							colored = false,
 							symbols = { warn = icons.diagnostics.Warn },
 							always_visible = true,
 							padding = { right = 1 },
@@ -172,14 +112,14 @@ return {
 		end,
 	},
 
-	-- active indent guide and indent text objects
+	-- Active indent guide and indent text objects
 	{
 		"echasnovski/mini.indentscope",
 		version = false,
 		event = { "BufReadPost", "BufNewFile" },
 		init = function()
 			vim.api.nvim_create_autocmd("FileType", {
-				pattern = { "help", "NvimTree", "neo-tree", "Trouble", "lazy", "mason" },
+				pattern = { "help", "Trouble", "lazy", "mason" },
 				callback = function() vim.b.miniindentscope_disable = true end,
 			})
 		end,
@@ -196,7 +136,7 @@ return {
 		end,
 	},
 
-	-- noicer ui
+	-- Noicer ui
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
@@ -321,100 +261,47 @@ return {
         },
 	},
 
+    -- Nicer notifications
 	{
-		"goolord/alpha-nvim",
-		event = "VimEnter",
-		dependencies = { "nvim-web-devicons" },
-		config = function()
-			local dashboard = require "alpha.themes.dashboard"
-			dashboard.section.buttons.val = {
-				dashboard.button("f", icons.ui.Search .. " Find file", ":Telescope find_files <CR>"),
-				dashboard.button(
-					"n",
-					icons.documents.NewFile .. " New file",
-					":ene <BAR> startinsert <CR>"
-				),
-				dashboard.button("r", icons.ui.History .. " Recent files", ":Telescope oldfiles <CR>"),
-				dashboard.button("g", icons.ui.Telescope .. " Find text", ":Telescope live_grep <CR>"),
-				dashboard.button("c", icons.ui.Gear .. " Config", ":e $MYVIMRC <CR>"),
-				dashboard.button(
-					"s",
-					icons.ui.History .. " Restore Session",
-					[[:lua require("persistence").load() <cr>]]
-				),
-				dashboard.button("m", icons.misc.Package .. " Mason", ":Mason<CR>"),
-				dashboard.button("l", icons.misc.Sleep .. " Lazy", ":Lazy<CR>"),
-				dashboard.button("q", icons.ui.SignOut .. " Quit", ":qa<CR>"),
-			}
-			for _, button in ipairs(dashboard.section.buttons.val) do
-				button.opts.hl = "AlphaButtons"
-				button.opts.hl_shortcut = "AlphaShortcut"
-			end
-			dashboard.section.footer.opts.hl = "Type"
-			dashboard.section.header.opts.hl = "AlphaHeader"
-			dashboard.section.buttons.opts.hl = "AlphaButtons"
-			dashboard.opts.layout[1].val = 8
-			vim.b.miniindentscope_disable = true
-
-			-- close Lazy and re-open when the dashboard is ready
-			if vim.o.filetype == "lazy" then
-				vim.cmd.close()
-				vim.api.nvim_create_autocmd("User", {
-					pattern = "AlphaReady",
-					callback = function() require("lazy").show() end,
-				})
-			end
-
-			require("alpha").setup(dashboard.opts)
-
-			vim.api.nvim_create_autocmd("User", {
-				pattern = "LazyVimStarted",
-				callback = function()
-					local stats = require("lazy").stats()
-					local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-					dashboard.section.footer.val = icons.ui.Fire
-						.. " Neovim loaded "
-						.. stats.count
-						.. " plugins in "
-						.. ms
-						.. "ms"
-					pcall(vim.cmd.AlphaRedraw)
-				end,
-			})
-		end,
+		"rcarriga/nvim-notify",
+		keys = {
+			{
+				"<leader>nd",
+				function() require("notify").dismiss { silent = true, pending = true } end,
+				desc = "Delete all Notifications",
+			},
+		},
+        main = "notify",
+		opts = {
+			timeout = 2000,
+			max_height = function() return math.floor(vim.o.lines * 0.75) end,
+			max_width = function() return math.floor(vim.o.columns * 0.75) end,
+			render = "simple",
+			on_open = function(win)
+			--	if vim.api.nvim_win_is_valid(win) then
+			--		vim.api.nvim_win_set_config(win, {
+			--			border = "rounded",
+			--		})
+			--	end
+			end,
+		},
 	},
 
-	-- icons
+    -- Nicer inputs and selects
 	{
-		"nvim-tree/nvim-web-devicons",
-		config = function()
-			require("nvim-web-devicons").setup {
-				default = false,
-				color_icons = false,
-				override = {
-					-- default_icon = {
-					-- 	icon = require("config.icons").documents.File,
-					-- 	color = require("octocolors.colors").get_colors().colors.fg,
-					-- 	name = "Default",
-					-- },
-				},
-			}
+		"stevearc/dressing.nvim",
+        config = true,
+		init = function()
+			---@diagnostic disable-next-line: duplicate-set-field
+			vim.ui.select = function(...)
+				require("lazy").load { plugins = { "dressing.nvim" } }
+				return vim.ui.select(...)
+			end
+			---@diagnostic disable-next-line: duplicate-set-field
+			vim.ui.input = function(...)
+				require("lazy").load { plugins = { "dressing.nvim" } }
+				return vim.ui.input(...)
+			end
 		end,
-	},
-
-	-- nicer icons
-	{
-		"yamatsum/nvim-nonicons",
-		dependencies = { "nvim-web-devicons" },
-		cond = function() return vim.env.TERM ~= "alacritty" end,
-		config = function()
-			local nonicons = require "nvim-nonicons"
-			nonicons.setup()
-			-- require("nvim-web-devicons").set_default_icon(
-			-- 	nonicons.get "file",
-			-- 	require("octocolors.colors").get_colors().colors.fg
-			-- )
-		end,
-		event = "VeryLazy",
 	},
 }

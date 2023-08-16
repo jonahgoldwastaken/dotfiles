@@ -1,4 +1,5 @@
 return {
+    -- Copilot
 	{
 		"zbirenbaum/copilot.lua",
 		event = { "BufReadPost" },
@@ -15,6 +16,7 @@ return {
 		end,
 	},
 
+    -- Copilot status
 	{
 		"jonahgoldwastaken/copilot-status.nvim",
 		dependencies = { "copilot.lua" },
@@ -23,23 +25,8 @@ return {
 			local path = vim.loop.cwd()
 			return path ~= nil and path:find "work" == nil
 		end,
-		opts = function()
-			if vim.env.TERM ~= "alacritty" then
-				return {
-					icons = {
-						idle = " ",
-						error = " ",
-						offline = " ",
-						warning = " ",
-						loading = " ",
-					},
-					debug = true,
-				}
-			end
-
-			return {
-				debug = true,
-			}
-		end,
+		opts = {
+            debug = true,
+        }
 	},
 }
