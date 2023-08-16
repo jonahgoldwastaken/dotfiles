@@ -74,3 +74,11 @@ keymap("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 keymap("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next" })
 keymap("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close" })
 keymap("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous" })
+
+-- copy and paste to/from pasteboard
+keymap("x", "<leader>y", "\"+y", { desc = "Copy to pasteboard" })
+keymap("x", "<leader>p", "\"+p", { desc = "Paste from pasteboard" })
+keymap("x", "<leader>P", "\"+P", { desc = "Paste from pasteboard" })
+keymap("n", "<leader>y", "\"+y", { desc = "Copy to pasteboard" })
+keymap("n", "<leader>p", "\"+p", { desc = "Paste from pasteboard" })
+keymap("n", "<leader>P", "\"+P", { desc = "Paste from pasteboard" })

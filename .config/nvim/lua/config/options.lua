@@ -3,7 +3,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.opt.autoread = true
-vim.opt.clipboard = "unnamed,unnamedplus"
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.conceallevel = 3
 vim.opt.confirm = true
