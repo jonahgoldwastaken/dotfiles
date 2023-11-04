@@ -25,6 +25,10 @@ fish_add_path $N_PREFIX/bin
 fish_add_path $N_PREFIX/lib/node_modules
 fish_add_path $PNPM_HOME
 
+if test -x $HOME/.cargo/bin/sccache
+    set -gx RUSTC_WRAPPER $HOME/.cargo/bin/sccache
+end
+
 if status is-interactive
     zoxide init fish | source
     update_theme
