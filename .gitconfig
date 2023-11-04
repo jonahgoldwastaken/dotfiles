@@ -27,6 +27,9 @@
 [rebase]
 	autoStash = true
 
+[status]
+	showUntrackedFiles = no
+
 [gpg]
 	program = /usr/local/bin/gpg
 
