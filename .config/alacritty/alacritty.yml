@@ -124,16 +124,16 @@ option_as_alt: OnlyRight
 # Font configuration
 font:
   normal:
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrainsMono Nerd Font
     style: Regular
   bold:
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrainsMono Nerd Font
     style: SemiBold
   italic:
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrainsMono Nerd Font
     style: Italic
   bold_italic:
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrainsMono Nerd Font
     style: SemiBold Italic
 
   # Point size
@@ -161,6 +161,54 @@ font:
   # builtin_box_drawing: true
   # If `true`, bold text is drawn using the bright color variants.
   draw_bold_text_with_bright_colors: true
+# Light
+# colors:
+#   primary:
+#     background: "#ffffff"
+#     foreground: "#24292f"
+#     #dim_foreground: '#828482'
+#     #bright_foreground: '#eaeaea'
+#   cursor:
+#     text: "#ffffff"
+#     cursor: "#0969da"
+#   vi_mode_cursor:
+#     text: "#ffffff"
+#     cursor: "#0969da"
+#   footer_bar:
+#     background: "#24292f"
+#     foreground: "#ffffff"
+#   matches:
+#     foreground: "#b6e3ff"
+#     background: "#24292f"
+#   focused_match:
+#     foreground: "#24292f"
+#     background: "#b6e3ff"
+#   hints:
+#     start:
+#       foreground: "#ffffff"
+#       background: "#0969da"
+#     end:
+#       foreground: "#0969da"
+#       background: "#ffffff"
+#   normal:
+#     black: "#24292f"
+#     red: "#cf222e"
+#     green: "#116329"
+#     yellow: "#4d2d00"
+#     blue: "#0969da"
+#     magenta: "#8250df"
+#     cyan: "#1b7c83"
+#     white: "#6e7781"
+#   bright:
+#     black: "#57606a"
+#     red: "#a40e26"
+#     green: "#1a7f37"
+#     yellow: "#633c01"
+#     blue: "#218bff"
+#     magenta: "#a475f9"
+#     cyan: "#3192aa"
+#     white: "#8c959f"
+# Dark
 colors:
   primary:
     background: "#0d1117"
@@ -207,4 +255,3 @@ colors:
     magenta: "#d2a8ff"
     cyan: "#56d4dd"
     white: "#ffffff"
-# Colors (Tomorrow Night)
