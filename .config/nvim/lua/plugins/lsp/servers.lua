@@ -80,4 +80,5 @@ return {
 			"handlebars",
 		},
 	},
+	marksman = {},
 }

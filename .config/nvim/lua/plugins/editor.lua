@@ -2,18 +2,18 @@ local util = require "util"
 local icons = require "util.icons"
 
 return {
-    -- File explorer
-    {
-        "stevearc/oil.nvim",
-        dependencies = { "nvim-web-devicons" },
-        config = true,
-        cmd = "Oil",
-        keys = {
-            { "<leader>e", "<cmd>Oil<cr>", "n" }
-        }
-    },
+	-- File explorer
+	{
+		"stevearc/oil.nvim",
+		dependencies = { "nvim-web-devicons" },
+		config = true,
+		cmd = "Oil",
+		keys = {
+			{ "<leader>e", "<cmd>Oil<cr>", "n" },
+		},
+	},
 
-    -- Telescope
+	-- Telescope
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
@@ -71,20 +71,7 @@ return {
 			},
 			{
 				"<leader>sw",
-				util.telescope("lsp_workspace_symbols", {
-					symbols = {
-						"Class",
-						"Constructor",
-						"Enum",
-						"Field",
-						"Function",
-						"Interface",
-						"Method",
-						"Property",
-						"Struct",
-						"Trait",
-					},
-				}),
+				util.telescope "lsp_workspace_symbols",
 				desc = "Goto Symbol (workspace)",
 			},
 			{ "<leader>ha", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
@@ -105,8 +92,9 @@ return {
 					layout_config = {
 						prompt_position = "top",
 						center = {
-							anchor = "N",
-							width = 80,
+							anchor = "CENTER",
+							width = 0.75,
+							height = 0.8,
 						},
 					},
 					sorting_strategy = "ascending",
@@ -153,7 +141,7 @@ return {
 						layout_strategy = "center",
 					},
 					lsp_references = {
-						fname_width = 80,
+						fname_width = 160,
 					},
 					lsp_document_symbols = {
 						wrap_results = false,
@@ -169,11 +157,11 @@ return {
 				},
 			}
 			telescope.load_extension "fzf"
-			telescope.load_extension "noice"
+			telescope.load_extension "hbac"
 		end,
 	},
 
-    -- Bracket navigation
+	-- Bracket navigation
 	{
 		"echasnovski/mini.bracketed",
 		event = { "BufReadPost", "BufNewFile" },
@@ -181,107 +169,10 @@ return {
 		config = true,
 	},
 
-    -- Line navigation preview
+	-- Line navigation preview
 	{ "nacro90/numb.nvim", event = { "BufReadPost", "BufNewFile" }, config = true },
 
-    -- File tagging
-	{
-		"cbochs/grapple.nvim",
-		keys = {
-			{
-				"<leader>tt",
-				function() require("grapple").toggle() end,
-				desc = "Toggle tag",
-				noremap = true,
-			},
-			{
-				"<leader>ts",
-				function() require("grapple").tag() end,
-				desc = "Set tag",
-				noremap = true,
-			},
-			{
-				"<leader>td",
-				function() require("grapple").untag() end,
-				desc = "Untag",
-				noremap = true,
-			},
-			{
-				"<leader>tT",
-				function()
-					require("grapple").toggle {
-						key = vim.fs.basename(vim.api.nvim_buf_get_name(0)),
-					}
-				end,
-				desc = "Toggle tag (named)",
-				noremap = true,
-			},
-			{
-				"<leader>tS",
-				function()
-					require("grapple").tag {
-						key = vim.fs.basename(vim.api.nvim_buf_get_name(0)),
-					}
-				end,
-				desc = "Set tag (named)",
-				noremap = true,
-			},
-			{
-				"<leader>tD",
-				function()
-					require("grapple").untag {
-						key = vim.fs.basename(vim.api.nvim_buf_get_name(0)),
-					}
-				end,
-				desc = "Untag (named)",
-				noremap = true,
-			},
-			{
-				"<leader>tn",
-				"<cmd>GrappleCycle forward<cr>",
-				desc = "Next tag",
-				noremap = true,
-			},
-			{
-				"<leader>tp",
-				"<cmd>GrappleCycle backward<cr>",
-				desc = "Previous tag",
-				noremap = true,
-			},
-			{
-				"<leader>tq",
-				function() require("grapple").quickfix() end,
-				desc = "Quickfix",
-				noremap = true,
-			},
-			{
-				"<leader>tf",
-				function() require("grapple").popup_tags() end,
-				desc = "Find tags",
-				noremap = true,
-			},
-			{
-				"<leader>tm",
-				function() require("grapple").popup_scopes() end,
-				desc = "Find scopes",
-				noremap = true,
-			},
-		},
-		opts = {
-			log_level = "warn",
-			scope = "git",
-			popup_options = {
-				relative = "editor",
-				width = 40,
-				height = 12,
-				style = "minimal",
-				focusable = false,
-				border = "rounded",
-			},
-		},
-	},
-
-    -- Buffer management
+	-- Buffer management
 	{
 		"axkirillov/hbac.nvim",
 		dependencies = {
@@ -289,11 +180,18 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
 		},
+		keys = {
+			{ "<leader>bt", "<cmd>Hbac toggle_pin<cr>", desc = "Toggle pin" },
+			{ "<leader>bp", "<cmd>Hbac pin_all<cr>", desc = "Pin all" },
+			{ "<leader>bu", "<cmd>Hbac unpin_all<cr>", desc = "Unpin all" },
+			{ "<leader>bc", "<cmd>Hbac close_unpinned<cr>", desc = "Close unpinned" },
+			{ "<leader>bh", "<cmd>Telescope hbac buffers<cr>", desc = "Buffer list (Hbac)" },
+		},
 		event = "VeryLazy",
-        config = true
+		config = true,
 	},
 
-    -- Better quickfix list
+	-- Better quickfix list
 	{
 		"folke/trouble.nvim",
 		cmd = { "TroubleToggle", "Trouble" },
@@ -322,7 +220,7 @@ return {
 		opts = { auto_open = false, use_diagnostic_signs = true },
 	},
 
-    -- WhichKey
+	-- WhichKey
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
@@ -344,18 +242,26 @@ return {
 				["<leader><tab>"] = { name = "+tabs" },
 				["<leader>b"] = { name = "+buffer" },
 				["<leader>c"] = { name = "+code" },
-				["<leader>d"] = { name = "+dap" },
 				["<leader>e"] = { name = "+explorer" },
 				["<leader>f"] = { name = "+file" },
 				["<leader>g"] = { name = "+git" },
 				["<leader>h"] = { name = "+help" },
-				["<leader>n"] = { name = "+noice" },
 				["<leader>q"] = { name = "+quit/session" },
 				["<leader>s"] = { name = "+search" },
-				["<leader>t"] = { name = "+tag" },
 				["<leader>w"] = { name = "+windows" },
 				["<leader>x"] = { name = "+diagnostics/quickfix" },
 			}
 		end,
+	},
+
+	-- Hints for better VIM keybinding usage
+	{
+		"m4xshen/hardtime.nvim",
+		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+		event = "VeryLazy",
+		opts = {
+			allow_different_key = true,
+			notification = false,
+		},
 	},
 }

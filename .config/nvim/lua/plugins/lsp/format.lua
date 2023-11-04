@@ -20,17 +20,7 @@ function M.toggle()
 end
 
 function M.format()
-	local buf = vim.api.nvim_get_current_buf()
-	local ft = vim.bo[buf].filetype
-	local have_formatter = #require("formatter.util").get_available_formatters_for_ft(ft) > 0
-
-	if M.enabled then
-        if (have_formatter) then
-            vim.cmd "Format"
-        else
-            vim.lsp.buf.format { bufnr = buf }
-        end
-	end
+	if M.enabled then require("conform").format { lsp_fallback = true, timeout = 500 } end
 end
 
 function M.on_attach(client, buf)

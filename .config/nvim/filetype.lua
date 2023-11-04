@@ -1,6 +1,5 @@
 vim.filetype.add {
 	extension = {
-		astro = "astro",
 		kdl = "kdl",
 	},
 	filename = {

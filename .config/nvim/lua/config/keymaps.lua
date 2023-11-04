@@ -44,9 +44,6 @@ keymap("n", "<leader>l", "<cmd>:Lazy<cr>")
 -- mason
 keymap("n", "<leader>m", "<cmd>:Mason<cr>")
 
--- quit
-keymap("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
-
 -- Clear search with <esc>
 keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
 keymap("n", "gw", "*N")

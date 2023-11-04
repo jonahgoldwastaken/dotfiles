@@ -1,12 +1,11 @@
+local util = require "util"
+
 return {
-    -- Copilot
+	-- Copilot
 	{
 		"zbirenbaum/copilot.lua",
 		event = { "BufReadPost" },
-		cond = function()
-			local path = vim.loop.cwd()
-			return path ~= nil and path:find "work" == nil
-		end,
+		cond = function() return util.in_work_dir() == false end,
 		config = function()
 			require("copilot").setup {
 				panel = { enabled = false },
@@ -16,17 +15,14 @@ return {
 		end,
 	},
 
-    -- Copilot status
+	-- Copilot status
 	{
 		"jonahgoldwastaken/copilot-status.nvim",
 		dependencies = { "copilot.lua" },
 		event = { "BufReadPre", "BufNewFile" },
-		cond = function()
-			local path = vim.loop.cwd()
-			return path ~= nil and path:find "work" == nil
-		end,
+		cond = function() return util.in_work_dir() == false end,
 		opts = {
-            debug = true,
-        }
+			debug = true,
+		},
 	},
 }

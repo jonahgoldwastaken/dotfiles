@@ -1,4 +1,4 @@
-local ident = 4
+local indent = 4
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -36,7 +36,7 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.tabstop = indent
 vim.o.termguicolors = true
-vim.o.timeoutlen = 200
+vim.o.timeoutlen = 500
 vim.o.undofile = true
 vim.o.undolevels = 10000
 vim.o.updatetime = 200
@@ -47,14 +47,14 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 
 if vim.fn.has "nvim-0.8" == 1 then
-    vim.o.backup = true
-    vim.o.cmdheight = 1
-    vim.o.backupdir = vim.fn.stdpath "state" .. "/backup"
+	vim.o.backup = true
+	vim.o.cmdheight = 1
+	vim.o.backupdir = vim.fn.stdpath "state" .. "/backup"
 end
 
 if vim.fn.has "nvim-0.9.0" == 1 then
-    vim.o.splitkeep = "screen"
-    vim.opt.shortmess:append { C = true }
+	vim.o.splitkeep = "screen"
+	vim.opt.shortmess:append { C = true }
 end
 
 -- fix markdown indentation settings
