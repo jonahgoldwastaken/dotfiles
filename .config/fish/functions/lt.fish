@@ -1,1 +1,1 @@
-alias lt="exa -RT"
+alias lt="eza -RT"

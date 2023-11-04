@@ -1,1 +1,1 @@
-alias ll="exa -l"
+alias ll="eza -l"

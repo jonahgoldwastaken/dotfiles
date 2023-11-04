@@ -1,1 +1,1 @@
-alias ls="exa -1"
+alias ls="eza -1"
