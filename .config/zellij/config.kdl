@@ -125,6 +125,7 @@ keybinds clear-defaults=true {
 		bind "k" { MoveFocus "Up"; SwitchToMode "Normal"; }
 		bind "o" { FocusNextPane; }
 		bind "d" { Detach; }
+        bind "q" { Quit; }
 	}
 	shared_except "locked" {
 		bind "Ctrl g" { SwitchToMode "Locked"; }
@@ -174,32 +175,32 @@ plugins {
 // Options:
 //   - detach (Default)
 //   - quit
-// 
+//
 // on_force_close "quit"
 
 //  Send a request for a simplified ui (without arrow fonts) to plugins
 //  Options:
 //    - true
 //    - false (Default)
-// 
+//
 simplified_ui true
 
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
-// 
+//
 // default_shell "fish"
 
 // Toggle between having pane frames around the panes
 // Options:
 //   - true (default)
 //   - false
-// 
+//
 // pane_frames false
 
 // Define color themes for Zellij
 // For more examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes
 // Once these themes are defined, one of them should to be selected in the "theme" section of this file
-// 
+//
 // themes {
 //	octocolors-dark {
 //		fg "#c9d1d9"
@@ -218,17 +219,17 @@ simplified_ui true
 
 // Choose the theme that is specified in the themes section.
 // Default: default
-// 
+//
 theme "octocolors-dark"
 
 // The name of the default layout to load on startup
 // Default: "default"
-// 
+//
 default_layout "compact"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
-// 
+//
 // default_mode "tmux"
 
 // Toggle enabling the mouse mode.
@@ -237,7 +238,7 @@ default_layout "compact"
 // Options:
 //   - true (default)
 //   - false
-// 
+//
 mouse_mode false
 
 // Configure the scroll back buffer size
@@ -245,7 +246,7 @@ mouse_mode false
 // buffer. Excess number of lines are discarded in a FIFO fashion.
 // Valid values: positive integers
 // Default value: 10000
-// 
+//
 // scroll_buffer_size 10000
 
 // Provide a command to execute when copying text. The text will be piped to
@@ -253,7 +254,7 @@ mouse_mode false
 // terminal emulators which do not support the OSC 52 ANSI control sequence
 // that will be used by default if this option is not set.
 // Examples:
-// 
+//
 // copy_command "xclip -selection clipboard" // x11
 // copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
@@ -264,17 +265,17 @@ mouse_mode false
 // Options:
 //   - system (default)
 //   - primary
-// 
+//
 // copy_clipboard "primary"
 
 // Enable or disable automatic copy (and clear) of selection when releasing mouse
 // Default: true
-// 
+//
 copy_on_select true
 
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
-// 
+//
 // scrollback_editor "/usr/bin/vim"
 
 // When attaching to an existing session with other users,
