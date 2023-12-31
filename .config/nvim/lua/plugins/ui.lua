@@ -18,26 +18,28 @@ return {
 			},
 			extensions = { "lazy", "mason", "trouble" },
 			sections = {
-				lualine_a = { "mode" },
+				lualine_a = { { "mode", fmt = function(str) return str:sub(1, 1) end } },
 				lualine_b = {
-					{ "branch", icon = icons.git.Branch },
 					{
-						"diff",
-						colored = false,
-						symbols = {
-							added = icons.git.Add,
-							modified = icons.git.Mod,
-							removed = icons.git.Remove,
-						},
+						function()
+							local cwd = vim.uv.cwd()
+							if cwd == nil then return "" end
+
+							local t = {}
+							for part in cwd:gmatch "/(%w+)" do
+								t:insert(part)
+							end
+							return t[#t]
+						end,
 					},
 				},
-				lualine_c = {
-					{ "filename", path = 1 },
-				},
+				lualine_c = { "filename" },
 				lualine_x = {
 					{
 						function() return require("copilot_status").status_string() end,
-						cnd = function() return require("copilot_status").enabled() end,
+						cond = function()
+							return package.loaded["copilot_status"] and require("copilot_status").enabled()
+						end,
 					},
 					{
 						"diagnostics",
@@ -49,7 +51,6 @@ return {
 					},
 				},
 				lualine_y = {
-					"o:encoding",
 					{
 						"fileformat",
 						symbols = {
@@ -58,11 +59,7 @@ return {
 							mac = "cr",
 						},
 					},
-					{
-						"filetype",
-						colored = false,
-						icon = { icons.misc.File },
-					},
+					function() return vim.bo.filetype end,
 				},
 				lualine_z = {
 					"searchcount",
