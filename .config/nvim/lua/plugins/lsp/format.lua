@@ -20,7 +20,7 @@ function M.toggle()
 end
 
 function M.format()
-	if M.enabled then require("conform").format { lsp_fallback = true, timeout = 500 } end
+	if M.enabled then require("conform").format { timeout = 500 } end
 end
 
 function M.on_attach(client, buf)
