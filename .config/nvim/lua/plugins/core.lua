@@ -4,24 +4,10 @@ return {
 
 	-- Colorscheme
 	{
-		"projekt0n/github-nvim-theme",
-		lazy = false,
+		"ellisonleao/gruvbox.nvim",
 		priority = 1000,
-		main = "github-theme",
+		lazy = false,
 		init = function() vim.o.background = vim.env.os_theme or "dark" end,
-		opts = {
-			darken = {
-				floats = true,
-			},
-		},
-		config = function(_, opts)
-			require("github-theme").setup(opts)
-
-			if vim.o.background == "dark" then
-				vim.cmd "colorscheme github_dark_high_contrast"
-			else
-				vim.cmd "colorscheme github_light_high_contrast"
-			end
-		end,
+		config = function() vim.cmd "colorscheme gruvbox" end,
 	},
 }

@@ -5,7 +5,7 @@ set -gx EDITOR nvim
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 set -gx PAGER "less -R"
-set -gx BAT_THEME Nord
+set -gx BAT_THEME gruvbox-dark
 set -gx FZF_DEFAULT_OPTS --bind=ctrl-l:clear-query
 set -gx LG_CONFIG_FILE "$HOME/.config/lazygit/config.yml"
 set -gx PNPM_HOME $HOME/Library/pnpm

@@ -1,0 +1,26 @@
+import = ["/Users/jonah/.config/alacritty/themes/themes/gruvbox_dark.toml"]
+
+[window]
+option_as_alt = "OnlyLeft"
+
+[mouse]
+hide_when_typing = true
+
+[font]
+size = 14.0
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "SemiBold"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "SemiBold Italic"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
