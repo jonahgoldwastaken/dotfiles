@@ -46,13 +46,10 @@
 	conflictstyle = diff3
 
 [diff]
-	colorMoved = default 
+	colorMoved = default
 
 [github]
 	user = jonahgoldwastaken
-
-[include]
-	path = ~/personal/octocolors.nvim/extras/delta/octocolors_dark.gitconfig
 
 [includeIf "gitdir:~/work/**"]
 	path = ~/work/.gitconfig
@@ -62,3 +59,6 @@
 
 [includeIf "gitdir:~/.dotfiles/**"]
 	path = ~/personal/.gitconfig
+
+[push]
+	autoSetupRemote = true
