@@ -1,5 +1,3 @@
-local util = require "lspconfig.util"
-
 return {
 	gopls = {},
 	rust_analyzer = {
@@ -19,11 +17,8 @@ return {
 				importModuleSpecifierPreference = "non-relative",
 			},
 		},
-		root_dir = util.find_git_ancestor,
 	},
-	eslint = {
-		root_dir = util.find_git_ancestor,
-	},
+	eslint = {},
 	svelte = {},
 	volar = {
 		init_options = {
@@ -41,9 +36,7 @@ return {
 			},
 		},
 	},
-	tailwindcss = {
-		root_dir = util.root_pattern("tailwind.config.js", "tailwind.config.ts", "tailwind.config.cjs"),
-	},
+	tailwindcss = {},
 	lua_ls = {
 		single_file_support = true,
 		settings = {
@@ -73,12 +66,11 @@ return {
 		filetypes = {
 			"html",
 			"css",
-			"javascript",
 			"javascriptreact",
-			"typescript",
 			"typescriptreact",
 			"handlebars",
 		},
 	},
 	marksman = {},
+	solargraph = {},
 }
