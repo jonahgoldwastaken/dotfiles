@@ -11,7 +11,7 @@ function M.on_attach(client, buffer)
 	self:map("gI", "Telescope lsp_implementations", { desc = "Goto Implementation" })
 	self:map("gt", "Telescope lsp_type_definitions", { desc = "Goto Type Definition" })
 	self:map("K", vim.lsp.buf.hover, { desc = "Hover" })
-	self:map("<leader>cr", M.rename, { expr = true, desc = "Rename", has = "rename" })
+	self:map("<leader>cr", vim.lsp.buf.rename, { desc = "Rename", has = "rename" })
 
 	self:map(
 		"<C-k>",
@@ -24,8 +24,7 @@ function M.on_attach(client, buffer)
 		{ desc = "Code Action", mode = { "n", "v" }, has = "codeAction" }
 	)
 
-	local format = require("plugins.lsp.format").format
-	self:map("<leader>cf", format, { desc = "Format Document" })
+	self:map("<leader>cf", require("plugins.lsp.format").format, { desc = "Format Document" })
 end
 
 function M.new(client, buffer)
@@ -44,20 +43,6 @@ function M:map(lhs, rhs, opts)
 		---@diagnostic disable-next-line: no-unknown
 		{ silent = true, buffer = self.buffer, expr = opts.expr, desc = opts.desc }
 	)
-end
-
-function M.rename()
-	if pcall(require, "inc_rename") then
-		return ":IncRename " .. vim.fn.expand "<cword>"
-	else
-		vim.lsp.buf.rename()
-	end
-end
-
-function M.diagnostic_goto(next, severity)
-	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-	severity = severity and vim.diagnostic.severity[severity] or nil
-	return function() go { severity = severity } end
 end
 
 return M
