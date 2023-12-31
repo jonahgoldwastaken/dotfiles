@@ -10,7 +10,7 @@ I use macOS. These dotfiles are made on and for computers running macOS. If you 
 
 I use the following programmes to develop, using all the hot new tools on the block like:
 
-1. [WezTerm](https://github.com/wez/wezterm): terminal emulator
+1. [Alacritty](https://github.com/alacritty/alacritty): terminal emulator
 2. [Fish shell](https://github.com/fish-shell/fish-shell): terminal shell of choice
 3. [Neovim](https://github.com/neovim/neovim): code editor
 4. [Zellij](https://github.com/zellij-org/zellij): terminal multiplexer
