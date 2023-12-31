@@ -13,7 +13,8 @@ end
 
 function M.set_color_scheme()
 	local dark_mode = vim.fn.system "defaults read -g AppleInterfaceStyle 2>/dev/null"
-	if dark_mode:find "Dark" then
+
+	if dark_mode == nil or dark_mode:find "Dark" then
 		vim.opt.background = "dark"
 		vim.cmd "colorscheme github_dark_high_contrast"
 	else
@@ -43,7 +44,7 @@ end
 
 function M.in_work_dir()
 	local path = vim.loop.cwd()
-	return path ~= nil and path:find "work" == nil
+	return path ~= nil and path:find "work" ~= nil
 end
 
 function M.setup()

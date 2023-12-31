@@ -21,7 +21,7 @@ local opts = {
 		},
 		{
 			import = "work.plugins",
-			cond = util.in_work_dir,
+			enabled = util.in_work_dir,
 		},
 	},
 	defaults = { lazy = true },
@@ -60,7 +60,7 @@ local opts = {
 	},
 	checker = {
 		enabled = true,
-		boolean = false,
+		notify = false,
 	},
 	performance = {
 		cache = { enabled = true },
