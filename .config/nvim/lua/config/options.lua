@@ -57,5 +57,7 @@ if vim.fn.has "nvim-0.9.0" == 1 then
 	vim.opt.shortmess:append { C = true }
 end
 
+vim.o.termsync = true
+
 -- fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
