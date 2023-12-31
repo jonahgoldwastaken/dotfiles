@@ -171,7 +171,7 @@ if vim.env.TERM ~= "xterm-256color" then
 			Smiley = " ",
 			Package = " ",
 			Keyboard = "  ",
-			Sleep = "鈴",
+			Sleep = "󰒲 ",
 			Terminal = " ",
 		},
 	}
@@ -328,7 +328,7 @@ else
 			Smiley = " ",
 			Package = " ",
 			Keyboard = "  ",
-			Sleep = "鈴",
+			Sleep = "󰒲 ",
 			Terminal = " ",
 		},
 	}
