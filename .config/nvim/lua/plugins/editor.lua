@@ -52,21 +52,7 @@ return {
 			{ "<leader>xd", "<cmd>Telescope diagnostics<cr>", desc = "Workspace diagnostics" },
 			{
 				"<leader>ss",
-				util.telescope("lsp_document_symbols", {
-					symbols = {
-						"Class",
-						"Constructor",
-						"Enum",
-						"Field",
-						"Function",
-						"Interface",
-						"Method",
-						"Module",
-						"Property",
-						"Struct",
-						"Trait",
-					},
-				}),
+				util.telescope "lsp_document_symbols",
 				desc = "Goto Symbol",
 			},
 			{
@@ -244,7 +230,7 @@ return {
 				["<leader>c"] = { name = "+code" },
 				["<leader>e"] = { name = "+explorer" },
 				["<leader>f"] = { name = "+file" },
-				["<leader>g"] = { name = "+git" },
+				["<leader>g"] = { name = "+gitlab" },
 				["<leader>h"] = { name = "+help" },
 				["<leader>q"] = { name = "+quit/session" },
 				["<leader>s"] = { name = "+search" },
@@ -257,7 +243,7 @@ return {
 	-- Hints for better VIM keybinding usage
 	{
 		"m4xshen/hardtime.nvim",
-		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+		dependencies = { "nvim-lua/plenary.nvim" },
 		event = "VeryLazy",
 		opts = {
 			allow_different_key = true,
