@@ -264,4 +264,34 @@ return {
 			notification = false,
 		},
 	},
+
+	-- Git
+	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+		},
+		opts = {},
+		cmd = { "Neogit" },
+	},
+
+	{
+		"folke/zen-mode.nvim",
+		keys = {
+			{ "<leader>zz", "<cmd>ZenMode<cr>", desc = "Zen Mode" },
+		},
+		opts = {
+			options = {
+				enabled = true,
+				ruler = false,
+				showcmd = false,
+				laststatus = 0,
+			},
+			plugins = {
+				gitsigns = { enabled = true },
+				alacritty = { enabled = true, font_size = 20 },
+			},
+		},
+	},
 }
