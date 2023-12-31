@@ -5,7 +5,8 @@ tap "homebrew/core"
 tap "homebrew/services"
 tap "jesseduffield/lazygit"
 tap "jkfran/killport"
-tap "wez/wezterm"
+tap "lokalise/cli-2"
+tap "oven-sh/bun"
 brew "libgit2"
 brew "bat"
 brew "bottom"
@@ -52,8 +53,11 @@ brew "neovim", args: ["HEAD"]
 brew "ninja"
 brew "pinentry-mac"
 brew "pkg-config"
+brew "pnpm"
 brew "postgresql@14", restart_service: true
+brew "rbenv"
 brew "ripgrep"
+brew "ruby"
 brew "rustup-init"
 brew "trash"
 brew "wget"
@@ -61,9 +65,10 @@ brew "xplr"
 brew "zellij"
 brew "zoxide"
 brew "jkfran/killport/killport"
+brew "lokalise/cli-2/lokalise2"
+brew "oven-sh/bun/bun"
 cask "alacritty"
 cask "alfred"
-cask "backblaze"
 cask "figma"
 cask "hazel"
 cask "keka"
@@ -71,19 +76,21 @@ cask "logi-options-plus"
 cask "losslesscut"
 cask "macs-fan-control"
 cask "mimestream"
-cask "monitorcontrol"
 cask "obs"
 cask "raspberry-pi-imager"
 cask "rekordbox"
 cask "setapp"
 cask "transmission"
-cask "wezterm-nightly"
 mas "Cardhop", id: 1290358394
 mas "Compressor", id: 424390742
-mas "Craft", id: 1487937127
+mas "Discovery", id: 1381004916
 mas "Fantastical", id: 975937182
 mas "Magnet", id: 441258766
 mas "Reeder", id: 1529448980
+mas "Sequel Ace", id: 1518036000
 mas "Shazam", id: 897118787
+mas "Streaks", id: 963034692
 mas "Todoist", id: 585829637
 mas "Webcam Settings", id: 533696630
+mas "Xcode", id: 497799835
+mas "‎WhatsApp", id: 310633997
