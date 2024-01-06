@@ -41,6 +41,7 @@ vim.o.undofile = true
 vim.o.undolevels = 10000
 vim.o.updatetime = 200
 vim.o.wrap = false
+vim.wo.foldlevel = 99
 
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0

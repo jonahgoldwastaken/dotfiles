@@ -1,6 +1,6 @@
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-local icons = require "util.icons"
-local util = require "util"
+local icons = require "jonahgold.util.icons"
+local util = require "jonahgold.util"
 
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system {
@@ -17,10 +17,10 @@ vim.opt.rtp:prepend(lazypath)
 local opts = {
 	spec = {
 		{
-			import = "plugins",
+			import = "jonahgold.plugins",
 		},
 		{
-			import = "work.plugins",
+			import = "jonahgold.work.plugins",
 			enabled = util.in_work_dir,
 		},
 	},

@@ -1,18 +1,8 @@
-if vim.fn.has "nvim-0.9.0" == 1 then vim.loader.enable() end
+vim.loader.enable()
 
-require "config.options"
+require "jonahgold.config.options"
+require "jonahgold.config.autocmds"
+require "jonahgold.config.keymaps"
+require "jonahgold.config.lazy"
 
-if vim.fn.argc(-1) == 0 then
-	vim.api.nvim_create_autocmd("User", {
-		pattern = "VeryLazy",
-		callback = function()
-			require "config.autocmds"
-			require "config.keymaps"
-		end,
-	})
-else
-	require "config.autocmds"
-	require "config.keymaps"
-end
-
-require "config.lazy"
+if require("jonahgold.util").in_work_dir() then require "jonahgold.work.commands" end

@@ -1,4 +1,4 @@
-local icons = require "util.icons"
+local icons = require "jonahgold.util.icons"
 
 return {
 	-- Statusline
@@ -88,6 +88,7 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 		init = function()
 			vim.api.nvim_create_autocmd("FileType", {
+				group = "Jonahgold",
 				pattern = { "help", "Trouble", "lazy", "mason" },
 				callback = function() vim.b.miniindentscope_disable = true end,
 			})

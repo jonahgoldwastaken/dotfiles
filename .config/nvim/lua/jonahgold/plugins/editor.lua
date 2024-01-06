@@ -1,5 +1,5 @@
-local util = require "util"
-local icons = require "util.icons"
+local util = require "jonahgold.util"
+local icons = require "jonahgold.util.icons"
 
 return {
 	-- File explorer
@@ -37,6 +37,7 @@ return {
 			},
 			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
 			{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
+			{ "<leader>fw", "<cmd>Telescope grep_string<cr>", desc = "Find word" },
 			{
 				"<leader>/",
 				"<cmd>Telescope current_buffer_fuzzy_find<cr>",
@@ -253,13 +254,8 @@ return {
 
 	-- Git
 	{
-		"NeogitOrg/neogit",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"sindrets/diffview.nvim",
-		},
-		opts = {},
-		cmd = { "Neogit" },
+		"tpope/vim-fugitive",
+		cmd = "Git",
 	},
 
 	{
@@ -267,6 +263,7 @@ return {
 		keys = {
 			{ "<leader>zz", "<cmd>ZenMode<cr>", desc = "Zen Mode" },
 		},
+		cmd = "ZenMode",
 		opts = {
 			options = {
 				enabled = true,

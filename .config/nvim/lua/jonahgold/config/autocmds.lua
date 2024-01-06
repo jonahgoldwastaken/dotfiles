@@ -1,8 +1,14 @@
+vim.api.nvim_create_augroup("Jonahgold", { clear = true })
+
 -- Check if we need to reload the file when it changed
-vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
+vim.api.nvim_create_autocmd(
+	{ "FocusGained", "TermClose", "TermLeave" },
+	{ group = "Jonahgold", command = "checktime" }
+)
 
 -- close some filetypes with <q>
-vim.api.nvim_create_autocmd({ "FileType" }, {
+vim.api.nvim_create_autocmd("FileType", {
+	group = "Jonahgold",
 	pattern = {
 		"qf",
 		"help",
@@ -19,6 +25,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+	group = "Jonahgold",
 	pattern = { "gitcommit", "markdown" },
 	callback = function()
 		vim.opt_local.wrap = true
@@ -28,10 +35,12 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
+	group = "Jonahgold",
 	callback = function() vim.highlight.on_yank() end,
 })
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
+vim.api.nvim_create_autocmd("FileType", {
+	group = "Jonahgold",
 	pattern = { "json", "jsonc" },
 	callback = function()
 		vim.wo.spell = false

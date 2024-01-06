@@ -31,7 +31,7 @@ return {
 				color_icons = false,
 				override = {
 					default_icon = {
-						icon = require("util.icons").documents.File,
+						icon = require("jonahgold.util.icons").documents.File,
 						name = "Default",
 					},
 				},

@@ -1,4 +1,4 @@
-local icons = require "util.icons"
+local icons = require "jonahgold.util.icons"
 
 return {
 	-- Auto-completion
@@ -26,6 +26,7 @@ return {
 					{ name = "buffer" },
 					{ name = "path" },
 					{ name = "emoji" },
+					{ name = "neorg" },
 				},
 				mapping = cmp.mapping.preset.insert {
 					["<Tab>"] = cmp.mapping(function(fallback)
@@ -47,8 +48,7 @@ return {
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-b>"] = cmp.mapping.scroll_docs(-1),
 					["<C-f>"] = cmp.mapping.scroll_docs(1),
-					["<CR>"] = cmp.mapping.confirm { select = true, behavior = cmp.ConfirmBehavior.Replace },
-					["<S-CR>"] = cmp.mapping.abort(),
+					["<CR>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace },
 					["<ESC>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then cmp.abort() end
 						fallback()
@@ -66,23 +66,8 @@ return {
 						return vim_item
 					end,
 				},
-				completion = {
-					autocomplete = { cmp.TriggerEvent.InsertEnter, cmp.TriggerEvent.TextChanged },
-					keyword_length = 0,
-				},
-
-				window = { completion = { cursorline = true } },
-				experimental = { ghost_text = { hl_group = "LspCodeLens" } },
 			}
 		end,
-	},
-
-	-- Auto pairs
-	{
-		"echasnovski/mini.pairs",
-		event = { "BufReadPost", "BufNewFile" },
-		main = "mini.pairs",
-		config = true,
 	},
 
 	-- Surrounding

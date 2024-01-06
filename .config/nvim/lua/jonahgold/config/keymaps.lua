@@ -5,9 +5,7 @@ local function keymap(mode, keys, cmd, o)
 	vim.keymap.set(mode, keys, cmd, vim.tbl_extend("keep", o, opts))
 end
 
--- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==")
-keymap("v", "<A-k>", ":m .-2<CR>==")
+-- Replace highlighted text with register content
 keymap("v", "p", "\"_dP")
 
 --Remap for dealing with word wrap
@@ -20,28 +18,26 @@ keymap("v", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
--- better indenting
+-- Better indenting
 keymap("v", "<", "<gv")
 keymap("v", ">", ">gv")
 
-keymap("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Open Location List" })
-keymap("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Open Quickfix List" })
+-- keymap("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Open Location List" })
+-- keymap("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Open Quickfix List" })
 
--- highlights under cursor
-if vim.fn.has "nvim-0.9.0" == 1 then
-	keymap("n", "<leader>hl", vim.show_pos, { desc = "Highlight Groups at cursor" })
-end
+-- Highlights under cursor
+keymap("n", "<leader>hl", vim.show_pos, { desc = "Highlight Groups at cursor" })
 
--- windows
+-- Windows
 keymap("n", "<leader>ww", "<C-W>p", { desc = "other-window" })
 keymap("n", "<leader>wd", "<C-W>c", { desc = "delete-window" })
 keymap("n", "<leader>w-", "<C-W>s", { desc = "split-window-below" })
 keymap("n", "<leader>w|", "<C-W>v", { desc = "split-window-right" })
 
--- lazy
+-- Lazy
 keymap("n", "<leader>l", "<cmd>:Lazy<cr>")
 
--- mason
+-- Mason
 keymap("n", "<leader>m", "<cmd>:Mason<cr>")
 
 -- Clear search with <esc>
@@ -58,21 +54,7 @@ keymap("n", "<S-Down>", "<cmd>resize -2<CR>")
 keymap("n", "<S-Left>", "<cmd>vertical resize -2<CR>")
 keymap("n", "<S-Right>", "<cmd>vertical resize +2<CR>")
 
--- Move to window using the <meta> movement keys
-keymap("n", "<A-left>", "<C-w>h")
-keymap("n", "<A-down>", "<C-w>j")
-keymap("n", "<A-up>", "<C-w>k")
-keymap("n", "<A-right>", "<C-w>l")
-
--- tabs
-keymap("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last" })
-keymap("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First" })
-keymap("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-keymap("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next" })
-keymap("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close" })
-keymap("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous" })
-
--- copy and paste to/from pasteboard
+-- Copy and paste to/from pasteboard
 keymap("x", "<leader>y", "\"+y", { desc = "Copy to pasteboard" })
 keymap("x", "<leader>p", "\"+p", { desc = "Paste from pasteboard" })
 keymap("x", "<leader>P", "\"+P", { desc = "Paste from pasteboard" })
