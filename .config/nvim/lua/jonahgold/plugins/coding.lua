@@ -75,7 +75,9 @@ return {
 		"echasnovski/mini.surround",
 		keys = { "s" },
 		main = "mini.surround",
-		config = true,
+		opts = {
+			n_lines = 500,
+		},
 	},
 
 	-- Better comments

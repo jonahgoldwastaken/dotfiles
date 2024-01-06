@@ -13,7 +13,7 @@ return {
 				component_separators = { left = icons.border.Vertical, right = icons.border.Vertical },
 				globalstatus = true,
 				disabled_filetypes = {
-					statusline = { "alpha", "lazy", "TelescopePrompt" },
+					statusline = { "lazy", "TelescopePrompt" },
 				},
 			},
 			extensions = { "lazy", "mason", "trouble" },
@@ -37,9 +37,7 @@ return {
 				lualine_x = {
 					{
 						function() return require("copilot_status").status_string() end,
-						cond = function()
-							return package.loaded["copilot_status"] and require("copilot_status").enabled()
-						end,
+						cond = function() return require("copilot_status").enabled() end,
 					},
 					{
 						"diagnostics",
@@ -89,7 +87,7 @@ return {
 		init = function()
 			vim.api.nvim_create_autocmd("FileType", {
 				group = "Jonahgold",
-				pattern = { "help", "Trouble", "lazy", "mason" },
+				pattern = { "help", "Trouble", "lazy", "mason", "norg" },
 				callback = function() vim.b.miniindentscope_disable = true end,
 			})
 		end,
