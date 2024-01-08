@@ -26,11 +26,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			"<cmd>Telescope diagnostics<cr>",
 			{ desc = "Telescope Diagnostics" }
 		)
-		vim.keymap.set("n", "gd", "Telescope lsp_definitions", { desc = "Goto Definition" })
-		vim.keymap.set("n", "gr", "Telescope lsp_references", { desc = "References" })
-		vim.keymap.set("n", "gD", "Telescope lsp_declarations", { desc = "Goto Declarations" })
-		vim.keymap.set("n", "gI", "Telescope lsp_implementations", { desc = "Goto Implementations" })
-		vim.keymap.set("n", "gI", "Telescope lsp_type_definitions", { desc = "Goto Type Definitions" })
+		vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { desc = "Goto Definition" })
+		vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { desc = "References" })
+		vim.keymap.set("n", "gD", "<cmd>Telescope lsp_declarations<cr>", { desc = "Goto Declarations" })
+		vim.keymap.set(
+			"n",
+			"gI",
+			"<cmd>Telescope lsp_implementations<cr>",
+			{ desc = "Goto Implementations" }
+		)
+		vim.keymap.set(
+			"n",
+			"gI",
+			"<cmd>Telescope lsp_type_definitions<cr>",
+			{ desc = "Goto Type Definitions" }
+		)
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
 
 		if util.lsp_client_has_capability(client, "signatureHelp") then
@@ -54,29 +64,25 @@ return {
 		dependencies = {
 			{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
 			{ "folke/neodev.nvim", config = true },
+			"williamboman/mason-lspconfig.nvim",
 			{
-				"williamboman/mason-lspconfig.nvim",
-				dependencies = {
-					{
-						"williamboman/mason.nvim",
-						cmd = "Mason",
-						opts = {
-							PATH = "prepend",
-							ui = {
-								keymaps = {
-									toggle_server_expand = "<CR>",
-									install_server = "i",
-									update_server = "u",
-									check_server_version = "c",
-									update_all_servers = "U",
-									check_outdated_servers = "C",
-									uninstall_server = "X",
-								},
-								check_outdated_servers_on_open = true,
-							},
-							log_level = vim.log.levels.INFO,
+				"williamboman/mason.nvim",
+				cmd = "Mason",
+				opts = {
+					PATH = "prepend",
+					ui = {
+						keymaps = {
+							toggle_server_expand = "<CR>",
+							install_server = "i",
+							update_server = "u",
+							check_server_version = "c",
+							update_all_servers = "U",
+							check_outdated_servers = "C",
+							uninstall_server = "X",
 						},
+						check_outdated_servers_on_open = true,
 					},
+					log_level = vim.log.levels.INFO,
 				},
 			},
 			"hrsh7th/nvim-cmp",
@@ -85,10 +91,11 @@ return {
 		config = function()
 			local lspconfig = require "lspconfig"
 			local lspconfig_util = require "lspconfig.util"
+			local mason_lspconfig = require "mason-lspconfig"
 			local capabilities =
 				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-			require("mason-lspconfig").setup {
+			mason_lspconfig.setup {
 				ensure_installed = {
 					"astro",
 					"emmet_ls",
@@ -105,94 +112,95 @@ return {
 					"marksman",
 					"volar",
 				},
-				handlers = {
-					function(server_name)
-						lspconfig[server_name].setup {
-							capabilities = capabilities,
-						}
-					end,
-					emmet_ls = function()
-						lspconfig.emmet_ls.setup {
-							capabilities = capabilities,
-							filetypes = {
-								"html",
-								"css",
-								"javascriptreact",
-								"typescriptreact",
-								"handlebars",
+			}
+
+			mason_lspconfig.setup_handlers {
+				function(server_name)
+					lspconfig[server_name].setup {
+						capabilities = capabilities,
+					}
+				end,
+				emmet_ls = function()
+					lspconfig.emmet_ls.setup {
+						capabilities = capabilities,
+						filetypes = {
+							"html",
+							"css",
+							"javascriptreact",
+							"typescriptreact",
+							"handlebars",
+						},
+					}
+				end,
+				yamlls = function()
+					lspconfig.yamlls.setup {
+						capabilities = capabilities,
+						settings = {
+							yaml = {
+								keyOrdering = false,
 							},
-						}
-					end,
-					yamlls = function()
-						lspconfig.yamlls.setup {
-							capabilities = capabilities,
-							settings = {
-								yaml = {
-									keyOrdering = false,
+						},
+					}
+				end,
+				lua_ls = function()
+					lspconfig.lua_ls.setup {
+						capabilities = capabilities,
+						single_file_support = true,
+						settings = {
+							Lua = {
+								workspace = {
+									checkThirdParty = true,
+								},
+								completion = {
+									workspaceWord = false,
+								},
+								telemetry = {
+									enable = false,
 								},
 							},
-						}
-					end,
-					lua_ls = function()
-						lspconfig.lua_ls.setup {
-							capabilities = capabilities,
-							single_file_support = true,
-							settings = {
-								Lua = {
-									workspace = {
-										checkThirdParty = true,
-									},
-									completion = {
-										workspaceWord = false,
-									},
-									telemetry = {
-										enable = false,
-									},
-								},
+						},
+					}
+				end,
+				jsonls = function()
+					lspconfig.jsonls.setup {
+						capabilities = capabilities,
+						settings = {
+							json = {
+								schemas = require("schemastore").json.schemas(),
+								validate = { enable = true },
 							},
-						}
-					end,
-					jsonls = function()
-						lspconfig.jsonls.setup {
-							capabilities = capabilities,
-							settings = {
-								json = {
-									schemas = require("schemastore").json.schemas(),
-									validate = { enable = true },
-								},
+						},
+					}
+				end,
+				tsserver = function()
+					lspconfig.tsserver.setup {
+						capabilities = capabilities,
+						init_options = {
+							preferences = {
+								importModuleSpecifierPreference = "non-relative",
 							},
-						}
-					end,
-					tsserver = function()
-						lspconfig.tsserver.setup {
-							capabilities = capabilities,
-							init_options = {
-								preferences = {
-									importModuleSpecifierPreference = "non-relative",
-								},
+						},
+					}
+				end,
+				rust_analyzer = function()
+					lspconfig.rust_analyzer.setup {
+						capabilities = capabilities,
+						settings = {
+							["rust-analyzer"] = {
+								cargo = { allFeatures = true },
+								check = { command = "clippy", extraArgs = { "--no-deps" } },
+								procMacro = { enable = true },
 							},
-						}
-					end,
-					rust_analyzer = function()
-						lspconfig.rust_analyzer.setup {
-							capabilities = capabilities,
-							settings = {
-								["rust-analyzer"] = {
-									cargo = { allFeatures = true },
-									check = { command = "clippy", extraArgs = { "--no-deps" } },
-									procMacro = { enable = true },
-								},
-							},
-							on_init = function(new_client, _) new_client.offset_encoding = "utf-16" end,
-						}
-					end,
-					gopls = function()
-						lspconfig.gopls.setup {
-							capabilities = capabilities,
-							root_dir = lspconfig_util.root_pattern { "go.mod" },
-						}
-					end,
-				},
+						},
+						on_init = function(new_client, _) new_client.offset_encoding = "utf-16" end,
+					}
+				end,
+				gopls = function()
+					lspconfig.gopls.setup {
+						capabilities = capabilities,
+						root_dir = lspconfig_util.root_pattern { "go.mod" },
+					}
+				end,
 			}
 
 			for name, icon in pairs(icons.diagnostics) do
