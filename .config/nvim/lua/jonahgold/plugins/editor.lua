@@ -144,7 +144,6 @@ return {
 				},
 			}
 			telescope.load_extension "fzf"
-			telescope.load_extension "hbac"
 		end,
 	},
 
@@ -159,22 +158,33 @@ return {
 	-- Line navigation preview
 	{ "nacro90/numb.nvim", event = { "BufReadPost", "BufNewFile" }, config = true },
 
-	-- Buffer management
+	-- Harpoon
 	{
-		"axkirillov/hbac.nvim",
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons",
-		},
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" },
 		keys = {
-			{ "<leader>bt", "<cmd>Hbac toggle_pin<cr>", desc = "Toggle pin" },
-			{ "<leader>bp", "<cmd>Hbac pin_all<cr>", desc = "Pin all" },
-			{ "<leader>bu", "<cmd>Hbac unpin_all<cr>", desc = "Unpin all" },
-			{ "<leader>bc", "<cmd>Hbac close_unpinned<cr>", desc = "Close unpinned" },
-			{ "<leader>bh", "<cmd>Telescope hbac buffers<cr>", desc = "Buffer list (Hbac)" },
+			{
+				"<leader>a",
+				function() require("harpoon"):list():append() end,
+				desc = "Add file to list",
+			},
+			{
+				"<leader>fh",
+				function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end,
+				desc = "Harpoon list",
+			},
+			{
+				"<leader>p",
+				function() require("harpoon"):list():prev { ui_nav_wrap = true } end,
+				desc = "Harpoon - Previous",
+			},
+			{
+				"<leader>n",
+				function() require("harpoon"):list():next { ui_nav_wrap = true } end,
+				desc = "Harpoon - Next",
+			},
 		},
-		event = "VeryLazy",
 		config = true,
 	},
 
@@ -239,17 +249,6 @@ return {
 				["<leader>x"] = { name = "+diagnostics/quickfix" },
 			}
 		end,
-	},
-
-	-- Hints for better VIM keybinding usage
-	{
-		"m4xshen/hardtime.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		event = "VeryLazy",
-		opts = {
-			allow_different_key = true,
-			notification = false,
-		},
 	},
 
 	-- Git
