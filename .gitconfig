@@ -25,7 +25,7 @@
 	showUntrackedFiles = no
 
 [gpg]
-	program = /usr/local/bin/gpg
+	program = /opt/homebrew/bin/gpg
 
 [interactive]
 	diffFilter = delta --color-only
