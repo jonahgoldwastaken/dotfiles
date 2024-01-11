@@ -1,6 +1,6 @@
 return {
 	-- Plenary
-	"nvim-lua/plenary.nvim",
+	{ "nvim-lua/plenary.nvim", lazy = false, priority = 10000 },
 
 	-- Session storage
 	{

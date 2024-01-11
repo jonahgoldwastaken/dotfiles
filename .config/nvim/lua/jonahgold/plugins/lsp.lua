@@ -1,7 +1,10 @@
 local util = require "jonahgold.util"
 local icons = require "jonahgold.util.icons"
+local settings = require "jonahgold.config.settings"
 
-local function format() require("conform").format { timeout = 500 } end
+local function format()
+	if settings.autoformat then require("conform").format { timeout = 500 } end
+end
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = "Jonahgold",
