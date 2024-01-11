@@ -1,6 +1,4 @@
 gui:
-  theme:
-    lightTheme: false
   skipNoStagedFilesWarning: false
   showListFooter: true
   showFileTree: true
