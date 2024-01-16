@@ -22,9 +22,6 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("v", "<", "<gv")
 keymap("v", ">", ">gv")
 
--- keymap("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Open Location List" })
--- keymap("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Open Quickfix List" })
-
 -- Highlights under cursor
 keymap("n", "<leader>hl", vim.show_pos, { desc = "Highlight Groups at cursor" })
 
@@ -45,15 +42,6 @@ keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
 keymap("n", "gw", "*N")
 keymap("x", "gw", "*N")
 
-keymap("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-keymap("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-
--- Resize window using <shift> arrow keys
-keymap("n", "<S-Up>", "<cmd>resize +2<CR>")
-keymap("n", "<S-Down>", "<cmd>resize -2<CR>")
-keymap("n", "<S-Left>", "<cmd>vertical resize -2<CR>")
-keymap("n", "<S-Right>", "<cmd>vertical resize +2<CR>")
-
 -- Copy and paste to/from pasteboard
 keymap("x", "<leader>y", "\"+y", { desc = "Copy to pasteboard" })
 keymap("x", "<leader>p", "\"+p", { desc = "Paste from pasteboard" })
@@ -61,3 +49,9 @@ keymap("x", "<leader>P", "\"+P", { desc = "Paste from pasteboard" })
 keymap("n", "<leader>y", "\"+y", { desc = "Copy to pasteboard" })
 keymap("n", "<leader>p", "\"+p", { desc = "Paste from pasteboard" })
 keymap("n", "<leader>P", "\"+P", { desc = "Paste from pasteboard" })
+
+-- Unset arrows
+keymap("x", "<up>", "<nop>")
+keymap("x", "<down>", "<nop>")
+keymap("x", "<left>", "<nop>")
+keymap("x", "<right>", "<nop>")
