@@ -73,6 +73,8 @@ return {
 		},
 		config = function()
 			local telescope = require "telescope"
+			local trouble = require "trouble.providers.telescope"
+
 			telescope.setup {
 				defaults = {
 					layout_strategy = "horizontal",
@@ -90,20 +92,14 @@ return {
 					prompt_prefix = icons.chevron.Right,
 					selection_caret = icons.triangle.Right,
 					mappings = {
+						n = {
+							["<C-q>"] = function(...) return trouble.open_with_trouble(...) end,
+							["<M-q>"] = function(...) return trouble.open_selected_with_trouble(...) end,
+						},
 						i = {
-							["<C-u>"] = false,
-							["<C-d>"] = false,
-							["<c-t>"] = function(...)
-								return require("trouble.providers.telescope").open_with_trouble(...)
-							end,
+							["<C-t>"] = function(...) return trouble.open_with_trouble(...) end,
 							["<C-i>"] = function() util.telescope("find_files", { no_ignore = true })() end,
 							["<C-h>"] = function() util.telescope("find_files", { hidden = true })() end,
-							["<C-Down>"] = function(...)
-								return require("telescope.actions").cycle_history_next(...)
-							end,
-							["<C-Up>"] = function(...)
-								return require("telescope.actions").cycle_history_prev(...)
-							end,
 						},
 					},
 					preview = {
