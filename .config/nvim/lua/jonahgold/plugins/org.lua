@@ -1,5 +1,4 @@
 return {
-
 	"nvim-neorg/neorg",
 	build = ":Neorg sync-parsers",
 	dependencies = { "nvim-lua/plenary.nvim" },
@@ -27,6 +26,8 @@ return {
 					["zen_mode"] = "zen-mode",
 				},
 			},
+			["core.export"] = {},
+			["core.export.markdown"] = {},
 		},
 	},
 }
