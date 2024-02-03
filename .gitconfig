@@ -51,6 +51,9 @@
 [includeIf "gitdir:~/personal/**"]
 	path = ~/personal/.gitconfig
 
+[includeIf "gitdir:~/notes"]
+	path = ~/personal/.gitconfig
+
 [includeIf "gitdir:~/.dotfiles/**"]
 	path = ~/personal/.gitconfig
 
