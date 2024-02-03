@@ -11,3 +11,9 @@ abbr --add gs git status
 abbr --add gco git checkout
 abbr --add gcb git checkout -b
 abbr --add gcm git commit -m
+abbr --add gst git status
+abbr --add gbd git branch -D
+abbr --add gmd git merge develop --no-edit
+abbr --add gcp git cherry-pick -m1
+abbr --add gcbc git checkout -b cherry-pick-
+

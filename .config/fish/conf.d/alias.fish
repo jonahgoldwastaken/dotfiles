@@ -1,8 +1,3 @@
-# Git
-alias gst "git status"
-alias gmd "git merge develop --no-edit"
-alias gbd "git branch -D"
-
 # Vim
 alias vim nvim
 alias vi nvim
