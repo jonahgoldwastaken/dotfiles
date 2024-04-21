@@ -141,6 +141,7 @@ return {
 						settings = {
 							yaml = {
 								keyOrdering = false,
+								customTags = { "!reference sequence" },
 							},
 						},
 					}
