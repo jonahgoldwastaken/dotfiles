@@ -16,6 +16,14 @@ layout {
             plugin location="zellij:compact-bar"
         }
     }
+    tab name="lazygit" {
+        pane borderless=true command="fish" {
+            args "-c" "lazygit"
+        }
+        pane size=1 borderless=true {
+            plugin location="zellij:compact-bar"
+        }
+    }
     new_tab_template {
         pane
         pane size=1 borderless=true {
