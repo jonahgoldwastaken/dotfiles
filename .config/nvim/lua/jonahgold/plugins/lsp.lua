@@ -3,7 +3,7 @@ local icons = require "jonahgold.util.icons"
 local settings = require "jonahgold.config.settings"
 
 local function format()
-	if settings.autoformat then require("conform").format { timeout = 500 } end
+	if settings.autoformat then require("conform").format { timeout = 1000 } end
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
