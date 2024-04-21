@@ -3,7 +3,7 @@ theme "gruvbox-light"
 default_layout "compact"
 mouse_mode false
 copy_on_select true
-session_serialization false
+session_serialization true
 
 plugins {
 	tab-bar { path "tab-bar"; }
