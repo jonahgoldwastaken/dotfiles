@@ -36,10 +36,6 @@ return {
 				lualine_c = { "filename" },
 				lualine_x = {
 					{
-						function() return require("copilot_status").status_string() end,
-						cond = function() return require("copilot_status").enabled() end,
-					},
-					{
 						"diagnostics",
 						source = { "nvim_diagnostic" },
 						sections = { "error", "warn" },

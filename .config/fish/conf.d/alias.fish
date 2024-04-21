@@ -6,6 +6,7 @@ alias v nvim
 # Shell commands
 alias find fd
 alias cat bat
+alias grep rg
 
 # Killport
 alias kp killport
