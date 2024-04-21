@@ -39,6 +39,11 @@ return {
 			{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
 			{ "<leader>fw", "<cmd>Telescope grep_string<cr>", desc = "Find word" },
 			{
+				"<leader>fd",
+				function() require("telescope.builtin").find_files { cwd = "~/.config" } end,
+				desc = "Find dotfiles",
+			},
+			{
 				"<leader>/",
 				"<cmd>Telescope current_buffer_fuzzy_find<cr>",
 				desc = "Search text in buffer",
@@ -87,7 +92,6 @@ return {
 						},
 					},
 					sorting_strategy = "ascending",
-					winblend = 0,
 					color_devicons = false,
 					prompt_prefix = icons.chevron.Right,
 					selection_caret = icons.triangle.Right,
@@ -139,6 +143,7 @@ return {
 					},
 				},
 			}
+
 			telescope.load_extension "fzf"
 		end,
 	},
@@ -151,9 +156,6 @@ return {
 		config = true,
 	},
 
-	-- Line navigation preview
-	{ "nacro90/numb.nvim", event = { "BufReadPost", "BufNewFile" }, config = true },
-
 	-- Harpoon
 	{
 		"ThePrimeagen/harpoon",
@@ -162,7 +164,7 @@ return {
 		keys = {
 			{
 				"<leader>a",
-				function() require("harpoon"):list():append() end,
+				function() require("harpoon"):list():add() end,
 				desc = "Add file to list",
 			},
 			{
@@ -171,14 +173,14 @@ return {
 				desc = "Harpoon list",
 			},
 			{
-				"<leader>p",
+				"<leader>hp",
 				function() require("harpoon"):list():prev { ui_nav_wrap = true } end,
-				desc = "Harpoon - Previous",
+				desc = "Harpoon Previous",
 			},
 			{
-				"<leader>n",
+				"<leader>hn",
 				function() require("harpoon"):list():next { ui_nav_wrap = true } end,
-				desc = "Harpoon - Next",
+				desc = "Harpoon Next",
 			},
 		},
 		config = true,
@@ -245,12 +247,6 @@ return {
 				["<leader>x"] = { name = "+diagnostics/quickfix" },
 			}
 		end,
-	},
-
-	-- Git
-	{
-		"tpope/vim-fugitive",
-		cmd = "Git",
 	},
 
 	{
