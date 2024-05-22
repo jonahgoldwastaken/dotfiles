@@ -46,7 +46,6 @@ brew "lpeg"
 brew "make"
 brew "mas"
 brew "n"
-brew "neovim", args: ["HEAD"]
 brew "ninja"
 brew "pinentry-mac"
 brew "pkg-config"
@@ -77,7 +76,6 @@ cask "mimestream"
 cask "raspberry-pi-imager"
 cask "rekordbox"
 cask "setapp"
-cask "transmission"
 mas "Cardhop", id: 1290358394
 mas "Compressor", id: 424390742
 mas "Discovery", id: 1381004916
