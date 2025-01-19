@@ -1,0 +1,63 @@
+[core]
+	pager = delta
+	ignoreCase = false
+	fsmonitor = true
+	untrackedcache = true
+	commitgraph = true
+
+[color]
+	ui = true
+
+[user]
+	name = Jonah Meijers
+	email = jonahmeijers97@gmail.com
+
+[commit]
+	gpgsign = true
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[rebase]
+	autoStash = true
+
+[gpg]
+	program = /opt/homebrew/bin/gpg
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+
+[merge]
+	conflictstyle = diff3
+
+[diff]
+	colorMoved = default
+
+[github]
+	user = jonahgoldwastaken
+
+[includeIf "gitdir:~/work/**"]
+	path = ~/work/.gitconfig
+
+[includeIf "gitdir:~/dev_docker/**"]
+	path = ~/work/.gitconfig
+
+[includeIf "gitdir:~/personal/**"]
+	path = ~/personal/.gitconfig
+
+[includeIf "gitdir:~/notes"]
+	path = ~/personal/.gitconfig
+
+[includeIf "gitdir:~/dotfiles"]
+	path = ~/personal/.gitconfig
+
+[push]
+	autoSetupRemote = true
+[fetch]
+	writeCommitGraph = true

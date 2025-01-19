@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+gui:
+  skipNoStagedFilesWarning: false
+  showListFooter: true
+  showFileTree: true
+  showCommandLog: true
+  showBottomLine: true
+  showIcons: true
+  commandLogSize: 8
+  splitDiff: auto
+  nerdFontsVersion: "3"
+  border: single
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+    useConfig: false

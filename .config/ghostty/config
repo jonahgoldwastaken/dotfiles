@@ -1,0 +1,8 @@
+# vim: filetype=config
+font-family = "JetBrainsMonoNL Nerd Font Mono"
+theme = "GruvboxLight"
+cursor-style = "block"
+font-size = 16
+font-feature = -liga
+mouse-hide-while-typing = true
+

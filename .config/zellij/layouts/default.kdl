@@ -1,0 +1,76 @@
+layout {
+    tab focus=true name="nvim" {
+        pane borderless=true command="fish" {
+            args "-c" "nvim"
+        }
+        // floating_panes {
+        //     pane {
+        //         plugin location="quicknote"
+        //     }
+        // }
+    }
+    tab name="term" {
+        pane split_direction="vertical" {
+            pane
+            pane
+        }
+    }
+    tab name="lazygit" {
+        pane borderless=true command="fish" {
+            args "-c" "lazygit"
+        }
+    }
+    new_tab_template {
+        pane
+    }
+    default_tab_template {
+        children
+        pane size=1 borderless=true {
+            plugin location="zjstatus" {
+                // Color palette
+                color_fg "#504945"
+                color_bg "#D5C4A1"
+                color_orange "#980005"
+                color_green "#79740E"
+                color_yellow "#D79921"
+                color_blue "#458588"
+                color_magenta "#B16286"
+                color_cyan "#689D6A"
+                color_black "#EBDBB2"
+                color_white "#3C3836"
+                color_red "#D65D0E"
+
+                // Bar layout
+                format_left "{mode}#[fg=$fg,bg=$bg,bold] {session} #[fg=$fg,bg=$bg]{tabs}"
+                format_center ""
+                format_right "{datetime}"
+                format_space ""
+
+                // Mode settings
+                mode_normal "#[bg=$fg,fg=$bg,bold] N "
+                mode_tmux "#[bg=$green,fg=$bg,bold] T "
+                mode_tab "#[bg=$red,fg=$bg,bold] T "
+                mode_pane "#[bg=$red,fg=$bg,bold] P "
+                mode_scroll "#[bg=$cyan,fg=$bg,bold] S "
+                mode_locked "#[bg=$magenta,fg=$bg,bold] L "
+
+                // Tab settings
+                tab_normal "#[fg=$white] [{index}] {name} "
+                tab_normal_fullscreen "#[fg=$white] [{index}] {name} {fullscreen_indicator} "
+                tab_normal_sync "#[fg=$white] [{index}] {name} {sync_indicator} "
+
+                tab_active "#[fg=$bg,bg=$green,bold] [{index}] {name} {floating_indicator}"
+                tab_active_fullscreen "#[fg=$bg,bg=$green,bold] [{index}] {name} {fullscreen_indicator}"
+                tab_active_sync "#[fg=$bg,bg=$green,bold] [{index}] {name} {sync_indicator}"
+
+                tab_sync_indicator "+ "
+                tab_fullscreen_indicator "[] "
+                tab_floating_indicator "^ "
+
+                datetime "#[fg=$bg,bg=$fg,bold] {format} "
+                datetime_format "%Y%m%d %H:%M %Z"
+                datetime_timezone "Europe/Amsterdam"
+            }
+        }
+    }
+}

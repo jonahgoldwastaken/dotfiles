@@ -1,0 +1,1 @@
+alias lt="eza -RT"
