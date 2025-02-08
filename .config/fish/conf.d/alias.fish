@@ -14,3 +14,7 @@ alias kp killport
 # Clear
 alias cls clear
 alias cl clear
+alias c clear
+
+# Notes
+alias n notes
