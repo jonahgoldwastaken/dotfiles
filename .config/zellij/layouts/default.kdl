@@ -53,6 +53,7 @@ layout {
                 mode_pane "#[bg=$red,fg=$bg,bold] P "
                 mode_scroll "#[bg=$cyan,fg=$bg,bold] S "
                 mode_locked "#[bg=$magenta,fg=$bg,bold] L "
+                mode_session "#[bg=$orange,fg=$bg,bold] S "
 
                 // Tab settings
                 tab_normal "#[fg=$white] [{index}] {name} "
