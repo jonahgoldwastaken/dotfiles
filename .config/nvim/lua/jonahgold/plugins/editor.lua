@@ -73,12 +73,10 @@ return {
 			},
 			{ "<leader>ha", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
 			{ "<leader>hc", "<cmd>Telescope commands<cr>", desc = "Commands" },
-			{ "<leader>hf", "<cmd>Telescope filetypes<cr>", desc = "File Types" },
 			{ "<leader>hh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
 			{ "<leader>hk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
 			{ "<leader>hm", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
 			{ "<leader>ho", "<cmd>Telescope vim_options<cr>", desc = "Options" },
-			{ "<leader>hs", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
 			{ "<leader>ht", "<cmd>Telescope builtin<cr>", desc = "Telescope" },
 		},
 		config = function()
