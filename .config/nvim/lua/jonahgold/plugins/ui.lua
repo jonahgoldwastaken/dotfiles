@@ -115,6 +115,7 @@ return {
 			current_line_blame = true,
 			signcolumn = true,
 			on_attach = function(bufnr)
+				-- TODO: Use keys option on lazy spec.
 				local gitsigns = require "gitsigns"
 
 				local function map(mode, keymap, action, opts)
