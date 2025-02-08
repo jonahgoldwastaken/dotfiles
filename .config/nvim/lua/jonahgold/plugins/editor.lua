@@ -287,4 +287,66 @@ return {
 		},
 		config = true,
 	},
+
+	{
+		"monaqa/dial.nvim",
+		keys = {
+			{
+				"<C-a>",
+				function() require("dial.map").manipulate("increment", "normal") end,
+				mode = "n",
+				desc = "Increment",
+				noremap = true,
+			},
+			{
+				"<C-x>",
+				function() require("dial.map").manipulate("decrement", "normal") end,
+				mode = "n",
+				desc = "Decrement",
+				noremap = true,
+			},
+			{
+				"g<C-a>",
+				function() require("dial.map").manipulate("increment", "gnormal") end,
+				mode = "n",
+				desc = "Increment",
+				noremap = true,
+			},
+			{
+				"g<C-x>",
+				function() require("dial.map").manipulate("decrement", "gnormal") end,
+				mode = "n",
+				desc = "Decrement",
+				noremap = true,
+			},
+			{
+				"<C-a>",
+				function() require("dial.map").manipulate("increment", "visual") end,
+				mode = "v",
+				desc = "Increment",
+				noremap = true,
+			},
+			{
+				"<C-x>",
+				function() require("dial.map").manipulate("decrement", "visual") end,
+				mode = "v",
+				desc = "Decrement",
+				noremap = true,
+			},
+			{
+				"g<C-a>",
+				function() require("dial.map").manipulate("increment", "gvisual") end,
+				mode = "v",
+				desc = "Increment",
+				noremap = true,
+			},
+			{
+				"g<C-x>",
+				function() require("dial.map").manipulate("decrement", "gvisual") end,
+				mode = "v",
+				desc = "Decrement",
+				noremap = true,
+			},
+		},
+	},
 }
