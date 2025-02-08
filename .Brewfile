@@ -43,6 +43,7 @@ brew "git-delta"
 brew "gnu-sed"
 brew "pinentry"
 brew "gnupg"
+brew "gnuplot"
 brew "go"
 brew "imagemagick"
 brew "jq"
@@ -93,12 +94,15 @@ mas "Cardhop", id: 1290358394
 mas "Compressor", id: 424390742
 mas "Discovery", id: 1381004916
 mas "Fantastical", id: 975937182
+mas "Final Cut Pro", id: 424389933
 mas "Magnet", id: 441258766
-mas "Reeder", id: 1529448980
+mas "Mela", id: 1568924476
+mas "Prime Video", id: 545519333
+mas "Reeder", id: 6475002485
 mas "Sequel Ace", id: 1518036000
 mas "Shazam", id: 897118787
 mas "Streaks", id: 963034692
 mas "Todoist", id: 585829637
 mas "Webcam Settings", id: 533696630
+mas "WhatsApp", id: 310633997
 mas "Xcode", id: 497799835
-mas "‎WhatsApp", id: 310633997
