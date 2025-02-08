@@ -40,7 +40,7 @@ return {
 						"diagnostics",
 						source = { "nvim_diagnostic" },
 						always_visible = true,
-						symbols = { error = "E", warn = "W", info = "I", hint = "H" },
+						symbols = { error = "E", warn = " W", info = " I", hint = " H" },
 						separator = " ",
 					},
 				},
