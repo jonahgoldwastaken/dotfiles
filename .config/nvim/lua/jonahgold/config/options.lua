@@ -4,7 +4,7 @@ vim.g.maplocalleader = " "
 
 vim.o.autoread = true
 vim.o.completeopt = "menu,menuone,noinsert,fuzzy"
-vim.o.conceallevel = 3
+vim.o.conceallevel = 2
 vim.o.confirm = true
 vim.o.cursorline = true
 vim.o.expandtab = true
