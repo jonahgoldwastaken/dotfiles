@@ -6,11 +6,12 @@ return {
 	{
 		"stevearc/oil.nvim",
 		dependencies = { "nvim-web-devicons" },
-		config = true,
+		lazy = vim.fn.argc(-1) == 0,
 		cmd = "Oil",
 		keys = {
 			{ "<leader>e", "<cmd>Oil<cr>", "n" },
 		},
+		config = true,
 	},
 
 	-- Telescope
@@ -247,6 +248,7 @@ return {
 					{ "<leader>f", { group = "file" } },
 					{ "<leader>g", { group = "gitlab" } },
 					{ "<leader>h", { group = "help" } },
+					{ "<leader>o", { group = "obsidian" } },
 					{ "<leader>q", { group = "quit/session" } },
 					{ "<leader>s", { group = "search" } },
 					{ "<leader>w", { group = "windows" } },
@@ -283,7 +285,9 @@ return {
 		keys = {
 			{ "<leader>zr", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle RenerMarkdown" },
 		},
-		config = true,
+		opts = {
+			enabled = vim.uv.cwd():find "vaults" == false,
+		},
 	},
 
 	{
