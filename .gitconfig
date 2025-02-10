@@ -57,6 +57,9 @@
 [includeIf "gitdir:~/.dotfiles"]
 	path = ~/personal/.gitconfig
 
+[includeIf "gitdir:~/vaults/personal/"]
+	path = ~/personal/.gitconfig
+
 [push]
 	autoSetupRemote = true
 [fetch]
