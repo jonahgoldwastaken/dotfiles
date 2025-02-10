@@ -234,16 +234,11 @@ plugins {
     }
     quicknote location="file:~/.config/zellij/plugins/zellij-quicknote.wasm"
     zjstatus location="file:~/.config/zellij/plugins/zjstatus.wasm"
-    zjframes location="file:~/.config/zellij/plugins/zjframes.wasm"
 }
 
 // Plugins to load in the background when a new session starts
 load_plugins {
     autolock
-    zjframes {
-        hide_frame_for_single_pane "true"
-        hide_frame_except_for_search "true"
-    }
 }
 
 // Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
@@ -269,7 +264,7 @@ load_plugins {
 //   - true (default)
 //   - false
 //
-// pane_frames true
+pane_frames false
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
