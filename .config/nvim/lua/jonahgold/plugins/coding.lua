@@ -1,67 +1,87 @@
-local icons = require "jonahgold.util.icons"
-
 return {
 	-- Auto-completion
 	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
+		"saghen/blink.cmp",
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"shurensha/cmp-path",
-			"hrsh7th/cmp-emoji",
+			"moyiz/blink-emoji.nvim",
+			{
+				"saghen/blink.compat",
+				version = "*",
+				opts = {},
+			},
 		},
-		opts = function()
-			local cmp = require "cmp"
-
-			return {
-				preselect = cmp.PreselectMode.Item,
-				snippet = {
-					expand = function(args) vim.snippet.expand(args.body) end,
+		version = "*",
+		---@module 'blink.cmp'
+		---@type blink.cmp.Config
+		opts = {
+			keymap = { preset = "default" },
+			sources = {
+				default = {
+					"lsp",
+					"path",
+					"buffer",
+					"emoji",
+					"obsidian",
+					"obsidian_new",
+					"obsidian_tags",
 				},
-				sources = cmp.config.sources {
-					{ name = "nvim_lsp" },
-					{ name = "buffer" },
-					{ name = "path" },
-					{ name = "emoji" },
+				providers = {
+					obsidian = {
+						name = "obsidian",
+						module = "blink.compat.source",
+					},
+					obsidian_new = {
+						name = "obsidian_new",
+						module = "blink.compat.source",
+					},
+					obsidian_tags = {
+						name = "obsidian_tags",
+						module = "blink.compat.source",
+					},
+					emoji = {
+						module = "blink-emoji",
+						name = "Emoji",
+						score_offset = 15, -- Tune by preference
+						opts = { insert = true }, -- Insert emoji (default) or complete its name
+						should_show_items = function()
+							return vim.tbl_contains(
+								-- Enable emoji completion only for git commits and markdown.
+								-- By default, enabled for all file-types.
+								{ "gitcommit", "markdown" },
+								vim.o.filetype
+							)
+						end,
+					},
 				},
-				mapping = cmp.mapping.preset.insert {
-					["<Tab>"] = cmp.mapping(function(fallback)
-						if vim.snippet.active { direction = 1 } then
-							vim.snippet.jump(1)
-						else
-							fallback()
-						end
-					end, { "i", "s" }),
-					["<S-Tab>"] = cmp.mapping(function(fallback)
-						if vim.snippet.active { direction = -1 } then
-							vim.snippet.jump(-1)
-						else
-							fallback()
-						end
-					end, { "i", "s" }),
-					["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-					["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-					["<C-Space>"] = cmp.mapping.complete { config = { completion = { keyword_length = 0 } } },
-					["<C-b>"] = cmp.mapping.scroll_docs(-1),
-					["<C-f>"] = cmp.mapping.scroll_docs(1),
-					["<C-y>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace },
-					["<ESC>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then cmp.abort() end
-						fallback()
-					end, { "i", "s" }),
+			},
+			appearance = {
+				use_nvim_cmp_as_default = true,
+				nerd_font_variant = "mono",
+			},
+			completion = {
+				trigger = {
+					show_on_insert_on_trigger_character = true,
+					show_on_keyword = true,
 				},
-				formatting = {
-					fields = { "abbr", "kind" },
-					format = function(_, vim_item)
-						if icons.kind[vim_item.kind] then
-							vim_item.kind = icons.kind[vim_item.kind] .. vim_item.kind
-						end
-						return vim_item
-					end,
+				ghost_text = {
+					enabled = true,
 				},
-			}
-		end,
+				menu = {
+					draw = {
+						align_to = "label",
+						columns = { { "kind" }, { "label", "label_description", gap = 1 } },
+						components = {
+							kind = {
+								ellipsis = false,
+								width = { fill = true },
+								text = function(ctx) return "[" .. ctx.kind:upper() .. "]" end,
+								highlight = function(ctx) return ctx.kind_hl end,
+							},
+						},
+					},
+				},
+			},
+		},
 	},
 
 	-- Surrounding

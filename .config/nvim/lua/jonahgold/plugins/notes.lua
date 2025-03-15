@@ -11,7 +11,7 @@ return {
 				"<leader>ont",
 				"<cmd>ObsidianNewFromTemplate<cr>",
 				mode = "n",
-				desc = "New note from title",
+				desc = "New note from template",
 			},
 
 			{ "<leader>otd", "<cmd>ObsidianToday<cr>", mode = "n", desc = "Open Today's note" },
@@ -67,9 +67,11 @@ return {
 				},
 			},
 
-			---@param title string|?
-			---@return string
 			note_id_func = function(title)
+				local title_match = title:match "^%d+-%d+-%d+"
+
+				if title_match ~= nil then return title end
+
 				-- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
 				-- In this case a note with the title 'My new note' will be given an ID that looks
 				-- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
@@ -86,7 +88,6 @@ return {
 				return tostring(os.time()) .. "-" .. suffix
 			end,
 
-			---@return table
 			note_frontmatter_func = function(note)
 				if note.title then note:add_alias(note.title) end
 
@@ -116,6 +117,33 @@ return {
 				folder = "templates",
 				date_format = "%d-%m-%Y",
 				time_format = "%H:%M",
+			},
+
+			attachments = {
+				img_folder = "assets",
+			},
+
+			ui = {
+				hl_groups = {
+					ObsidianTodo = { link = "GruvboxOrangeBold" },
+					ObsidianDone = { link = "GruvboxGreenBold" },
+					ObsidianRightArrow = { link = "GruvboxOrangeBold" },
+					ObsidianTilde = { link = "GruvboxPurpleBold" },
+					ObsidianImportant = { link = "GruvboxRedBold" },
+					ObsidianBullet = { link = "GruvboxBlue" },
+					ObsidianRefText = { link = "GruvboxPurpleUnderline" },
+					ObsidianExtLinkIcon = { link = "GruvboxPurple" },
+					ObsidianTag = { link = "GruvboxBlue", italic = true },
+					ObsidianBlockID = { link = "GruvboxBlue", italic = true },
+					ObsidianHighlightText = { link = "GruvboxGreen" },
+				},
+			},
+
+			mappings = {
+				["gf"] = {
+					action = function() return require("obsidian").util.gf_passthrough() end,
+					opts = { noremap = false, expr = true, buffer = true },
+				},
 			},
 		},
 	},
