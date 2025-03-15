@@ -48,7 +48,7 @@ layout {
                 mode_session "#[bg=$orange,fg=$bg,bold] S "
 
                 // Tab settings
-                tab_normal "#[fg=$white] [{index}] {name} "
+                tab_normal "#[fg=$bg,italic] [{index}] {name} "
                 tab_normal_fullscreen "#[fg=$white] [{index}] {name} {fullscreen_indicator} "
                 tab_normal_sync "#[fg=$white] [{index}] {name} {sync_indicator} "
 
