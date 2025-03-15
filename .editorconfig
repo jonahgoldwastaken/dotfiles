@@ -8,16 +8,12 @@ indent_size = 4
 tab_width = 4
 indent_style = space
 trim_trailing_whitespace = true
-max_line_length = 100
-
-[*.{yml,yaml,toml,rb}]
-indent_size = 2
-tab_width = 2
-
-[*.{norg,md}]
 max_line_length = 80
+
+[*.{yml,yaml,toml,rb,md}]
 indent_size = 2
 tab_width = 2
+indent_style = space
 
 [*.{md,mdx}]
 trim_trailing_whitespace = false
