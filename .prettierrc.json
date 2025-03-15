@@ -3,10 +3,19 @@
 	"semi": true,
 	"bracketSameLine": false,
 	"singleQuote": false,
-	"tabWidth": 2,
+	"tabWidth": 4,
 	"trailingComma": "es5",
-	"useTabs": true,
+	"useTabs": false,
 	"printWidth": 80,
 	"proseWrap": "preserve",
-	"editorconfig": true
+	"editorconfig": true,
+	"overrides": [
+		{
+			"files": ["*.md", "*.yml", "*.yaml", "*.toml", "*.rb", "*.md"],
+			"options": {
+				"tabWidth": 2,
+				"useTabs": false
+			}
+		}
+	]
 }
