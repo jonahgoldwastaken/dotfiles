@@ -22,3 +22,7 @@ abbr --add gcbr git checkout -b revert-
 abbr --add gcno git commit --no-edit
 abbr --add gfa git fetch --all
 abbr --add gfap git fetch --all --prune
+
+# Zellij
+abbr --add za zellij a (basename (pwd))
+abbr --add zs zellij -s (basename (pwd))

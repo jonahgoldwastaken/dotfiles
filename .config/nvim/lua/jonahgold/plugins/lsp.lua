@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local buffer = e.buf
 		local client = vim.lsp.get_client_by_id(e.data.client_id)
 
-		if client ~= nil and client.supports_method "textDocument/formatting" then
+		if client ~= nil and client:supports_method "textDocument/formatting" then
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				group = "Jonahgold",
 				buffer = buffer,
@@ -85,7 +85,7 @@ return {
 			local lspconfig = require "lspconfig"
 			local lspconfig_util = require "lspconfig.util"
 			local mason_lspconfig = require "mason-lspconfig"
-			local capabilities = require('blink.cmp').get_lsp_capabilities({})
+			local capabilities = require("blink.cmp").get_lsp_capabilities {}
 
 			mason_lspconfig.setup {
 				ensure_installed = {

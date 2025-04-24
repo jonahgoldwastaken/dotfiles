@@ -38,6 +38,11 @@ return {
 						name = "obsidian_tags",
 						module = "blink.compat.source",
 					},
+					path = {
+						opts = {
+							get_cwd = function(_) return vim.fn.getcwd() end,
+						},
+					},
 					emoji = {
 						module = "blink-emoji",
 						name = "Emoji",
@@ -62,9 +67,6 @@ return {
 				trigger = {
 					show_on_insert_on_trigger_character = true,
 					show_on_keyword = true,
-				},
-				ghost_text = {
-					enabled = true,
 				},
 				menu = {
 					draw = {

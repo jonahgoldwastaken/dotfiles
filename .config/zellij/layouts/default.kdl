@@ -12,9 +12,6 @@ layout {
             args "-c" "lazygit"
         }
     }
-    new_tab_template {
-        pane
-    }
     default_tab_template {
         children
         pane size=1 {
