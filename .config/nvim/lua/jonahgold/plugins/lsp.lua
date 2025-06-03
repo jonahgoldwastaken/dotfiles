@@ -63,14 +63,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
 return {
 	{
 		"neovim/nvim-lspconfig",
-		commit = "124be12d782d656b3c75b513a44d9e4728406078",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-			{ "folke/neodev.nvim", config = true },
-			"williamboman/mason-lspconfig.nvim",
 			{
-				"williamboman/mason.nvim",
+				"folke/lazydev.nvim",
+				ft = "lua", -- only load on lua files
+				opts = {
+					library = {
+						-- See the configuration section for more details
+						-- Load luvit types when the `vim.uv` word is found
+						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+					},
+				},
+			},
+			{
+				"mason-org/mason.nvim",
 				cmd = "Mason",
 				opts = {
 					PATH = "prepend",
@@ -82,174 +90,16 @@ return {
 			"b0o/schemastore.nvim",
 		},
 		config = function()
-			local lspconfig = require "lspconfig"
-			local lspconfig_util = require "lspconfig.util"
-			local mason_lspconfig = require "mason-lspconfig"
-			local capabilities = require("blink.cmp").get_lsp_capabilities {}
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
+			local lsp = require "jonahgold.config.lsp"
 
-			mason_lspconfig.setup {
-				ensure_installed = {
-					"astro",
-					"emmet_ls",
-					"eslint",
-					"gopls",
-					"html",
-					"jsonls",
-					"lua_ls",
-					"svelte",
-					"tailwindcss",
-					"taplo",
-					"ts_ls",
-					"yamlls",
-					"volar",
-				},
-				handlers = {
-					function(server_name)
-						if server_name ~= "jsonls" then
-							lspconfig[server_name].setup {
-								capabilities = capabilities,
-							}
-						end
-					end,
-					eslint = function()
-						lspconfig.eslint.setup {
-							capabilities = capabilities,
-							settings = {
-								run = "onSave",
-							},
-						}
-					end,
-					["emmet_ls"] = function()
-						lspconfig.emmet_ls.setup {
-							capabilities = capabilities,
-							filetypes = {
-								"html",
-								"css",
-								"javascriptreact",
-								"typescriptreact",
-								"handlebars",
-							},
-						}
-					end,
-					["yamlls"] = function()
-						lspconfig.yamlls.setup {
-							capabilities = capabilities,
-							settings = {
-								yaml = {
-									keyOrdering = false,
-									customTags = { "!reference sequence" },
-								},
-							},
-						}
-					end,
-					["lua_ls"] = function()
-						lspconfig.lua_ls.setup {
-							capabilities = capabilities,
-							single_file_support = true,
-							settings = {
-								Lua = {
-									workspace = {
-										checkThirdParty = true,
-									},
-									completion = {
-										workspaceWord = false,
-									},
-									telemetry = {
-										enable = false,
-									},
-								},
-							},
-						}
-					end,
-					["ts_ls"] = function()
-						lspconfig.ts_ls.setup {
-							capabilities = capabilities,
-							init_options = {
-								preferences = {
-									importModuleSpecifierPreference = "non-relative",
-								},
-							},
-						}
-					end,
-					["rust_analyzer"] = function()
-						lspconfig.rust_analyzer.setup {
-							capabilities = capabilities,
-							settings = {
-								["rust-analyzer"] = {
-									cargo = { allFeatures = true },
-									check = { command = "clippy", extraArgs = { "--no-deps" } },
-								},
-							},
-							on_init = function(new_client, _) new_client.offset_encoding = "utf-16" end,
-						}
-					end,
-					["gopls"] = function()
-						lspconfig.gopls.setup {
-							capabilities = capabilities,
-							root_dir = lspconfig_util.root_pattern { "go.mod" },
-						}
-					end,
-				},
-			}
+			vim.lsp.config("*", { capabilities = capabilities })
 
-			local schemas = vim.inspect(schemas)
+			for server_name, config in pairs(lsp.custom_configs) do
+				vim.lsp.config(server_name, config)
+			end
 
-			capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-			lspconfig.jsonls.setup {
-				capabilities = capabilities,
-				on_new_config = function(new_config)
-					new_config.settings.json.schemas = new_config.settings.json.schemas or {}
-					vim.list_extend(new_config.settings.json.schemas, schemas)
-				end,
-				settings = {
-					json = {
-						schemas = require("schemastore").json.schemas {
-							extra = {
-								{
-									description = "Common definition schema.",
-									fileMatch = {
-										"*ApiObject.json",
-										"*Workflow.json",
-										"*Component.json",
-										"*View.json",
-										"*Store.json",
-									},
-									name = "bunq common",
-									url = "file:///Users/jonah/work/frontend/develop/bunq/common/generator/schema/SchemaCommon.json",
-								},
-								{
-									description = "Definition file for generating bunq API Objects.",
-									fileMatch = { "*ApiObject.json" },
-									name = "API Object definition",
-									url = "file:///Users/jonah/work/frontend/develop/bunq/common/generator/schema/SchemaApiObject.json",
-								},
-								{
-									description = "Definition file for generating bunq Components.",
-									fileMatch = { "*Component.json", "*View.json" },
-									name = "Component definition",
-									url = "file:///Users/jonah/work/frontend/develop/bunq/common/generator/schema/SchemaComponent.json",
-								},
-								{
-									description = "Definition file for generating bunq Workflows.",
-									fileMatch = { "*Workflow.json" },
-									name = "Workflow definition",
-									url = "file:///Users/jonah/work/frontend/develop/bunq/common/generator/schema/SchemaWorkflow.json",
-								},
-								{
-									description = "Definition file for generating bunq Stores.",
-									fileMatch = { "*Store.json" },
-									name = "Store definition",
-									url = "file:///Users/jonah/work/frontend/develop/bunq/common/generator/schema/SchemaStore.json",
-								},
-							},
-						},
-						trace = { server = "verbose" },
-						format = { enable = false, keepLines = false },
-						validate = { enable = true },
-					},
-				},
-			}
+			vim.lsp.enable(lsp.lsp_clients())
 
 			vim.diagnostic.config {
 				underline = true,

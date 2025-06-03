@@ -17,6 +17,7 @@ return {
 			keymap = { preset = "default" },
 			sources = {
 				default = {
+					"lazydev",
 					"lsp",
 					"path",
 					"buffer",
@@ -26,6 +27,11 @@ return {
 					"obsidian_tags",
 				},
 				providers = {
+					lazydev = {
+						name = "LazyDev",
+						module = "lazydev.integrations.blink",
+						score_offset = 100,
+					},
 					obsidian = {
 						name = "obsidian",
 						module = "blink.compat.source",
