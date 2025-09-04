@@ -12,9 +12,6 @@
 	name = Jonah Meijers
 	email = jonahmeijers97@gmail.com
 
-[commit]
-	gpgsign = true
-
 [init]
 	defaultBranch = main
 
@@ -23,9 +20,6 @@
 
 [rebase]
 	autoStash = true
-
-[gpg]
-	program = /opt/homebrew/bin/gpg
 
 [interactive]
 	diffFilter = delta --color-only
@@ -64,3 +58,4 @@
 	autoSetupRemote = true
 [fetch]
 	writeCommitGraph = true
+	prune = true
